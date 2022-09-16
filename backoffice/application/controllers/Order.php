@@ -4348,7 +4348,7 @@ class Order extends Base_Controller {
                 'tracking_url' => $tracking_url,
                 'shipped_at' => date('Y-m-d H:i:s')
             );
-            if($delivery_company != "" && $tracking_no != "" && $tracking_url != ""){
+            if($delivery_company != "" && $tracking_no != ""){
                 $data['order_status'] = "SHIPPED";
             }
             $this->Api_Model->update_data(TBL_ORDER, array('id' => $order_id, 'active' => 1), $data);
