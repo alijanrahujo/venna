@@ -1,1 +1,7 @@
+<<<<<<< Updated upstream
 js/ipa.js
+=======
+
+*.js
+api/application/config/constants.php
+>>>>>>> Stashed changes
