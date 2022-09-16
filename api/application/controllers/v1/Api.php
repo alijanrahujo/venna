@@ -2517,13 +2517,14 @@ class  Api extends Base_Controller {
                         $referral_upline_price = $referral_upline_price;
                         //add 0.50 commission if current user package is director and upline package is director
                         if ($referral_package_id == 59 and $referral_upline_package_id == 59) {
-							 $t_item = 0;
+
+                            $t_item = 0;
                             foreach($cart_list as $q_list)
                             {
                                 $t_item += $q_list['quantity'];
                             }
                             $t_item *=0.5;
-							
+
                             $upline_comm =($upline_price - $referral_upline_price)+$t_item;
 
                         }

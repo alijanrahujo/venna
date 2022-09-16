@@ -45,7 +45,7 @@ class Order_Api extends Base_Controller {
             // }
 
             if(($is_paid_to_company == 1 && $voucher_type == "BIG_PRESENT") || ($is_paid_to_company == 1 && $is_restock == 1) || ($is_paid_to_company == 1 && $is_voucher == 0)){
-                $result = $this->error_response("Insufficient Stock ! Please restock to approve!");
+                $result = $this->error_response("Invalid Permission to approve !");
                 $this->response($result, 200);
             }else{
                 if($is_voucher == 1){
