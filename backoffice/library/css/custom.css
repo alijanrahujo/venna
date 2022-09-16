@@ -1,0 +1,22 @@
+.add-icon {
+    margin-left: 10px;
+    font-size: 20px;
+}
+
+.choose-file-input-single-position-top {
+    margin-top: 30px;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.choose-file-input-double-position-top {
+    margin-top: 5px;
+}
+
+.hr-left-20 {
+    margin-left: 20px !important;
+}
+
+.hr-right-20 {
+    margin-right: 20px !important;
+}
