@@ -242,7 +242,7 @@ select.list-dt:focus {
     object-fit: cover;
 }
 
-#select
-{
-    background-color: red; !important;
+.newcolor p {
+    color: #000000 !important;
+    font-weight: 300;
 }
