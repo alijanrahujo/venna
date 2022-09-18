@@ -241,3 +241,8 @@ select.list-dt:focus {
     width: 100%;
     object-fit: cover;
 }
+
+#select
+{
+    background-color: red; !important;
+}
