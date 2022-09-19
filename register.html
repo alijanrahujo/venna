@@ -66,7 +66,7 @@
                 </li><li class="nav-item"><a class="nav-link link text-white display-7" href="page1.html">About Us
                     </a></li><li class="nav-item dropdown"><a class="nav-link link text-white dropdown-toggle display-7" href="page2.html" data-toggle="dropdown-submenu" aria-expanded="true">Products</a><div class="dropdown-menu"><a class="text-white dropdown-item display-7" href="page7.html">VENNA Rice Spa<br></a><a class="text-white dropdown-item display-7" href="page5.html">VENNA Indox<br></a><a class="text-white dropdown-item display-7" href="page8.html">VENNA Lovena<br></a></div></li><li class="nav-item"><a class="nav-link link text-white display-7" href="page4.html">Contact</a></li>
 
-                    <li class="nav-item"><a class="nav-link link text-white display-7" href="register.html">Register</a></li>
+                    <li class="nav-item"><a class="nav-link link text-white display-7" href=#>Register</a></li>
                   </ul>
             <div class="navbar-buttons mbr-section-btn"><a class="btn btn-sm btn-primary display-4" href="page6.html">
                     
@@ -74,10 +74,6 @@
         </div>
     </nav>
 </section>
-
-
-
-
   
   <div class="content">
     <div class="container">
@@ -92,30 +88,32 @@
                   <div class="mb-4">
                     <h3><center>Sign Up Your User Account</center></h3>
                     <p class="mb-4"><center>Fill all form field to go to next step</center></p>
-                </div>
-                <form id="login_form" method="post">
-                  <div id="first_step">
+                </div>  
+                <div id="first_step">
+                    <label style="font-size: small; color: gray;"><b>Referral Username</b>
+                      This is a member only portal. Sign up with a referral username!</label>
                     <div class="form-group first">
-                      <select class="form-control" id="select">
-                        <option selected>Open this select menu</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                      </select>
+                      <label for="username">Username</label>
+                      <input type="text" name="username" class="form-control" id="username">
                     </div>
-                    <div class="form-group last mb-4">
-                    <label for="password">Bank Account Holder</label>
-                    <input type="password" name="password" class="form-control" id="password">
-                    </div>
-                    <div class="form-group last mb-4">
-                        <label for="password">Bank Account Number</label>
-                        <input type="password" name="password" class="form-control" id="password">
-                        </div>
+                    <input type="button" value="Next Step" id="referral" class="btn btn-pill text-white btn-block btn-primary">
                   </div>
+                  <form id="register_form" method="post">
+                    <div class="form-group last mb-4">
+                      <label for="email">Email</label>
+                      <input type="email" name="email" class="form-control" id="email">
+                    </div>
+                    
+                    <div class="form-group last mb-4">
+                      <label for="password">Password</label>
+                      <input type="password" name="password" class="form-control" id="password">
+                    </div>
+                    
+                    <div class="form-group last mb-4">
+                      <label for="cfm_password">Comfirm Password</label>
+                      <input type="password" name="cfm_password" class="form-control" id="cfm_password">
+                    </div>
                   <input type="submit" value="Submit" class="btn btn-pill text-white btn-block btn-primary">
-                
-
-                 
                 </form>
               </div>
             </div>
@@ -140,42 +138,27 @@
 </html>
 
 <script>
-  $(document).ready(function() {
-            localStorage.removeItem("user_id");
-        });
+  $(document).ready(function(){
+    $('#register_form').hide();
+  })
 
-        $('#login_form').submit(function(e) {
-            e.preventDefault();
+  $('#referral').click(function(){
 
-            var agent_login = new FormData(this);
-            agent_login.set('api_key', api_key);
+        var check_username = new FormData();
+        check_username.set('api_key', api_key);
+        check_username.set('username', $("#username").val());
+        check_username.set('subdomain', 'venna');
+        axios.post(address + 'v1/Auth_Api/check_referral_username', check_username, apiHeader)
+            .then(function(response) {
+                if (response.data.status == "Success") {
+                    console.log(response.data.data);
+                    //$("#hidden_referral_username").val(response.data.data.username);
+                    //$("#signUpModal").modal("show");
+                } else {
+                    warning_response(response.data.message);
+                }
+            })
+            .catch(function(data) {});
+  })
 
-            axios.post(address + 'v1/Auth_Api/login', agent_login, apiHeader)
-                .then(function(response) {
-                    if (response.data.status == "Success") {
-                        localStorage.oauth_token = response.data.data.oauth_client_token;
-                        localStorage.access_token = response.data.data.access_token;
-                        localStorage.user_id = response.data.data.user_id;
-                        if (response.data.data.is_step1 == 0) {
-                            success_response("Success", true, "register_package.html");
-                        } else if (response.data.data.is_step2 == 0) {
-                            success_response("Success", true, "register_package2.html");
-                        } else if (response.data.data.is_step3 == 0) {
-                            success_response("Success", true, "register_package3.html");
-                        } else if (response.data.data.is_step4 == 0) {
-                            success_response("Success", true, "register_package4.html");
-                        } else if (response.data.data.is_done == 0) {
-                            success_response("Success", true, "register_package_review.html");
-                        } else {
-                            success_response("Success", true, "soft/pages/dashboard.html");
-                        }
-                    } else {
-                        warning_response(response.data.message);
-                    }
-                })
-                .catch(function(data) {
-                    console.log(data);
-                    error_response();
-                });
-        });
 </script>
