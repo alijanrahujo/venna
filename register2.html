@@ -90,33 +90,41 @@
             <div class="col-md-12">
               <div class="form-block">
                   <div class="mb-4">
-                  <h3><center>Affiliate Login</center></h3>
-                  <p class="mb-4"><center>New affiliate?<a href=#>Register here</a></center></p>
-                  <p class="mb-4"><center>OR</center></p>
-                   <p class="mb-4"><center><a href=#>Login Here</a></center></p>
+                    <h3><center>Sign Up Your User Account</center></h3>
+                    <p class="mb-4"><center>Fill all form field to go to next step</center></p>
                 </div>
                 <form id="login_form" method="post">
-                  <div class="form-group first">
-                    <label for="email">email</label>
+                  <div id="first_step">
+                    <label style="font-size: small; color: gray;">Enter your full name as indicated on your NRIC or passport</label>
+                    <div class="form-group first">
+                    <label for="email">Full Name</label>
                     <input type="email" name="email" class="form-control" id="email">
-
-                  </div>
+                    </div>
+                    <label style="font-size: small; color: gray;">Enter your unique user name so your friends can find you easily. This can not be chaged after setting up.</label>
                   <div class="form-group last mb-4">
-                    <label for="password">Password</label>
+                    <label for="password">Username</label>
                     <input type="password" name="password" class="form-control" id="password">
-                    
+                    </div>
+                    <div class="form-group last mb-4">
+                    <label for="password">Phone Number</label>
+                    <input type="password" name="password" class="form-control" id="password">
+                    </div>
+                    <div class="form-group last mb-4">
+                        <label for="password">IC Number</label>
+                        <input type="password" name="password" class="form-control" id="password">
+                        </div>
+                        <label style="font-size: small; color: gray;">Enter 6 digit security code, your secret key is required to withdraw money and purchase stocks.</label>
+                    <div class="form-group last mb-4">
+                    <label for="password">Security Code</label>
+                    <input type="password" name="password" class="form-control" id="password">
+                    </div>
+                    <div class="form-group last mb-4">
+                    <label for="password">Confirm Security Code</label>
+                    <input type="password" name="password" class="form-control" id="password">
+                    </div>
                   </div>
+                  <input type="submit" value="Submit" class="btn btn-pill text-white btn-block btn-primary">
                   
-                  <div class="d-flex mb-5 align-items-center">
-                    <label class="control control--checkbox mb-0"><span class="caption">Remember me</span>
-                      <input type="checkbox" checked="checked"/>
-                      <div class="control__indicator"></div>
-                    </label>
-                    <span class="ml-auto"><a href="#" class="forgot-pass">Forgot Password</a></span> 
-                  </div>
-
-                  <input type="submit" value="Log In" class="btn btn-pill text-white btn-block btn-primary">
-
                  
                 </form>
               </div>

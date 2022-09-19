@@ -90,32 +90,30 @@
             <div class="col-md-12">
               <div class="form-block">
                   <div class="mb-4">
-                  <h3><center>Affiliate Login</center></h3>
-                  <p class="mb-4"><center>New affiliate?<a href=#>Register here</a></center></p>
-                  <p class="mb-4"><center>OR</center></p>
-                   <p class="mb-4"><center><a href=#>Login Here</a></center></p>
+                    <h3><center>Sign Up Your User Account</center></h3>
+                    <p class="mb-4"><center>Fill all form field to go to next step</center></p>
                 </div>
                 <form id="login_form" method="post">
-                  <div class="form-group first">
-                    <label for="email">email</label>
-                    <input type="email" name="email" class="form-control" id="email">
-
-                  </div>
-                  <div class="form-group last mb-4">
-                    <label for="password">Password</label>
+                  <div id="first_step">
+                    <div class="form-group first">
+                      <select class="form-control" id="select">
+                        <option selected>Open this select menu</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                      </select>
+                    </div>
+                    <div class="form-group last mb-4">
+                    <label for="password">Bank Account Holder</label>
                     <input type="password" name="password" class="form-control" id="password">
-                    
+                    </div>
+                    <div class="form-group last mb-4">
+                        <label for="password">Bank Account Number</label>
+                        <input type="password" name="password" class="form-control" id="password">
+                        </div>
                   </div>
-                  
-                  <div class="d-flex mb-5 align-items-center">
-                    <label class="control control--checkbox mb-0"><span class="caption">Remember me</span>
-                      <input type="checkbox" checked="checked"/>
-                      <div class="control__indicator"></div>
-                    </label>
-                    <span class="ml-auto"><a href="#" class="forgot-pass">Forgot Password</a></span> 
-                  </div>
-
-                  <input type="submit" value="Log In" class="btn btn-pill text-white btn-block btn-primary">
+                  <input type="submit" value="Submit" class="btn btn-pill text-white btn-block btn-primary">
+                
 
                  
                 </form>
