@@ -310,7 +310,7 @@ function isChecked(checkbox, sub1) {
                 .then(function(response) {
                     if (response.data.status == "Success") {
                         $("#sub1").prop("disabled", true);
-                        success_response("Success", true, "soft/pages/dashboard.html");
+                        success_response("Success", true, "dashboard/index.php");
                     } else {
                         warning_response(response.data.message);
                     }
