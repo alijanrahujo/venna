@@ -148,7 +148,6 @@
 
         $('#login_form').submit(function(e) {
             e.preventDefault();
-
             var agent_login = new FormData(this);
             agent_login.set('api_key', api_key);
 
@@ -159,15 +158,15 @@
                         localStorage.access_token = response.data.data.access_token;
                         localStorage.user_id = response.data.data.user_id;
                         if (response.data.data.is_step1 == 0) {
-                            success_response("Success", true, "register_package.html");
+                            success_response("Success", true, "register1.html");
                         } else if (response.data.data.is_step2 == 0) {
-                            success_response("Success", true, "register_package2.html");
+                            success_response("Success", true, "register2.html");
                         } else if (response.data.data.is_step3 == 0) {
-                            success_response("Success", true, "register_package3.html");
+                            success_response("Success", true, "register3.html");
                         } else if (response.data.data.is_step4 == 0) {
-                            success_response("Success", true, "register_package4.html");
+                            success_response("Success", true, "register4.html");
                         } else if (response.data.data.is_done == 0) {
-                            success_response("Success", true, "register_package_review.html");
+                            success_response("Success", true, "register5.html");
                         } else {
                             success_response("Success", true, "soft/pages/dashboard.html");
                         }

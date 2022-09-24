@@ -90,80 +90,22 @@
             <div class="col-md-12">
               <div class="form-block">
                   <div class="mb-4">
-                  <h3><center>Sign Up Your User Account</center></h3>
-                   <p class="mb-4"><center>Fill all form field to go to next step</center></p>
+                  <h3><center>Select Package</center></h3>
+                   <p class="mb-4"><center>Select package from list to go to next step</center></p>
                 </div>
-                <form id="login_form" method="post">
                   <div id="third_step">
-                    <div class="card text-center border">
-                      <div class="card-header bg-primary">
-                        Package 1
-                      </div>
-                      <div class="card-body newcolor">
-                        <p class="card-text">Rm 111.00</p>
-                        <p class="card-text">600</p>
-                        <p class="card-text">Rm 66000.00</p>
-                        <a href="#" class="btn btn-primary">Select</a>
-                      </div>
-                      </div>
-                      <p>
-                      <div class="card text-center border">
-                        <div class="card-header bg-primary">
-                          Package 2
-                        </div>
-                        
-                        <div class="card-body newcolor">
-                          <p class="card-text">Rm 111.00</p>
-                          <p class="card-text">600</p>
-                          <p class="card-text">Rm 66000.00</p>
-                          <a href="#" class="btn btn-primary">Select</a>
-                        </div>
-                        </div>
-                        <p>
-                          <div class="card text-center border">
-                            <div class="card-header bg-primary">
-                              Package 3
-                            </div>
-                            
-                            <div class="card-body newcolor">
-                              <p class="card-text">Rm 111.00</p>
-                              <p class="card-text">600</p>
-                              <p class="card-text">Rm 66000.00</p>
-                              <a href="#" class="btn btn-primary">Select</a>
-                            </div>
-                            </div>
-                            <p>
-                              <div class="card text-center border">
-                                <div class="card-header bg-primary">
-                                  Package 4
-                                </div>
-                                
-                                <div class="card-body newcolor">
-                                  <p class="card-text">Rm 111.00</p>
-                                  <p class="card-text">600</p>
-                                  <p class="card-text">Rm 66000.00</p>
-                                  <a href="#" class="btn btn-primary">Select</a>
-                                </div>
-                                </div>
-                                <p>
-                                  <div class="card text-center border">
-                                    <div class="card-header bg-primary">
-                                      Package 5
-                                    </div>
-                                    
-                                    <div class="card-body newcolor">
-                                      <p class="card-text">Rm 111.00</p>
-                                      <p class="card-text">600</p>
-                                      <p class="card-text">Rm 66000.00</p>
-                                      <a href="#" class="btn btn-primary">Select</a>
-                                    </div>
-                                    </div>
-                  </div>
 
-                  <input type="button" value="Next" class="btn btn-pill text-white btn-block btn-primary">
+                    <div class="form-group first">
+                      <select class="form-control" id="country_id" onchange="update_country(this)">
+                      </select>
+                    </div>
 
-                 
-                </form>
+                    <div id="ifNo">
+                      <p class="nofound">Package Not found | Select a country</p>
+                    </div>
+                    <div id="ifYes" style="display: none;">
+                        <div id="package_list"></div>
+                    </div>
               </div>
             </div>
           </div>
@@ -187,34 +129,40 @@
 </html>
 
 <script>
-  $(document).ready(function() {
-            localStorage.removeItem("user_id");
-        });
+var country_list = [];
 
-        $('#login_form').submit(function(e) {
-            e.preventDefault();
+$(document).ready(function() {
+    get_country();
+    check_user_step1();
+});
 
-            var agent_login = new FormData(this);
-            agent_login.set('api_key', api_key);
+function check_user_step1() {
+            var get_user_information = new FormData();
+            get_user_information.set('api_key', api_key);
+            get_user_information.set('access_token', localStorage.access_token);
+            get_user_information.set('user_id', localStorage.user_id);
 
-            axios.post(address + 'v1/Auth_Api/login', agent_login, apiHeader)
+            axios.post(address + 'v1/Basic_Api/get_user_information', get_user_information, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                        'Authorization': localStorage.oauth_token
+                    }
+                })
                 .then(function(response) {
                     if (response.data.status == "Success") {
-                        localStorage.oauth_token = response.data.data.oauth_client_token;
-                        localStorage.access_token = response.data.data.access_token;
-                        localStorage.user_id = response.data.data.user_id;
-                        if (response.data.data.is_step1 == 0) {
-                            success_response("Success", true, "register_package.html");
-                        } else if (response.data.data.is_step2 == 0) {
-                            success_response("Success", true, "register_package2.html");
-                        } else if (response.data.data.is_step3 == 0) {
-                            success_response("Success", true, "register_package3.html");
-                        } else if (response.data.data.is_step4 == 0) {
-                            success_response("Success", true, "register_package4.html");
-                        } else if (response.data.data.is_done == 0) {
-                            success_response("Success", true, "register_package_review.html");
-                        } else {
-                            success_response("Success", true, "soft/pages/dashboard.html");
+                        if (response.data.data.is_voucher == 1) {
+                            $("#voucher_btn").prop("disabled", true);
+                            $("#country_id").prop("disabled", true);
+                        }
+                        if (response.data.data.country_id != 0 && response.data.data.package_name != "") {
+                            $('#country_id option[value="' + response.data.data.country_id + '"]').attr("selected", "selected");
+                            if (response.data.data.is_voucher == 1) {
+                                display_selected_package(response.data.data);
+                            } else {
+                                get_package();
+                            }
+                            $("#ifNo").css("display", "none");
+                            $("#ifYes").css("display", "block");
                         }
                     } else {
                         warning_response(response.data.message);
@@ -224,5 +172,143 @@
                     console.log(data);
                     error_response();
                 });
-        });
+        }
+
+function get_country() {
+            var get_country = new FormData();
+            get_country.set('api_key', api_key);
+            get_country.set('access_token', localStorage.access_token);
+            get_country.set('user_id', localStorage.user_id);
+
+            axios.post(address + 'v1/Basic_Api/get_country', get_country, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                        'Authorization': localStorage.oauth_token
+                    }
+                })
+                .then(function(response) {
+                    if (response.data.status == "Success") {
+                        country_list = response.data.data.country;
+                        if (country_list == "") {
+                            $("#country_id").prop("disabled", true);
+                            $('#country_id').empty().append($('<option value="0">').text("No Country Found"));
+                        } else {
+                            $("#country_id").prop("disabled", false);
+                            $('#country_id').empty().append($('<option value="0">').text("Select Country"));
+                            for (var i = 0; i < country_list.length; i++) {
+                                $('#country_id').append($('<option value="' + country_list[i].id + '">').text(country_list[i].name));
+                            }
+                        }
+                        //check_user_step1();
+                    } else {
+                        warning_response(response.data.message);
+                    }
+                })
+                .catch(function(data) {
+                    console.log(data);
+                    error_response();
+                });
+        }
+
+
+        function update_country() {
+            var update_country = new FormData();
+            update_country.set('api_key', api_key);
+            update_country.set('access_token', localStorage.access_token);
+            update_country.set('user_id', localStorage.user_id);
+            update_country.set('country_id', $("#country_id").val());
+
+            axios.post(address + 'v1/Basic_Api/update_user_country', update_country, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                        'Authorization': localStorage.oauth_token
+                    }
+                })
+                .then(function(response) {
+
+                    if (response.data.status == "Success") {
+                        localStorage.country_id = response.data.data.country_id;
+                        $("#ifNo").css("display", "none");
+                        $("#ifYes").css("display", "block");
+                        get_package();
+                    } else {
+                        warning_response(response.data.message);
+                    }
+                })
+                .catch(function(data) {
+                    console.log(data);
+                    error_response();
+                });
+        }
+
+        function get_package() {
+            var get_package = new FormData();
+            get_package.set('api_key', api_key);
+            get_package.set('access_token', localStorage.access_token);
+            get_package.set('user_id', localStorage.user_id);
+            get_package.set('country_id', $("#country_id").val());
+
+            axios.post(address + 'v1/Basic_Api/get_packages', get_package, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                        'Authorization': localStorage.oauth_token
+                    }
+                })
+                .then(function(response) {
+
+                    if (response.data.status == "Success") {
+                        display_package(response.data.data.package);
+                    } else {
+                        warning_response(response.data.message);
+                    }
+                })
+                .catch(function(data) {
+                    console.log(data);
+                    error_response();
+                });
+        }
+
+        function display_package(json_response) {
+            $("#package_list").html("");
+            var package_list = "";
+            $.each(json_response, function(i, data) {
+
+                package_list += '<div class="card text-center border">';
+                package_list += '<div class="card-header bg-primary"><b>' + data.name + '</b></div>';
+                package_list += '<div class="card-body newcolor">';
+                package_list += '<p class="card-text">' + data.currency_name + ' ' + data.unit_price + '/' + data.unit + '</p>';
+                package_list += '<p class="card-text">' + data.quantity + ' (' + data.unit + ')</p>';
+                package_list += '<p class="card-text"><b>Rm ' + data.grand_total + '</b></p>';
+                package_list += '<button class="btn btn-primary" onclick="select_package(' + data.id + ')">Select</button>';
+                package_list += '</div></div>';
+            });
+            $("#package_list").append(package_list);
+        }
+
+        function select_package(package_id) {
+            var update_user_step1 = new FormData();
+            update_user_step1.set('api_key', api_key);
+            update_user_step1.set('access_token', localStorage.access_token);
+            update_user_step1.set('user_id', localStorage.user_id);
+            update_user_step1.set('package_id', package_id);
+
+            axios.post(address + 'v1/Basic_Api/update_user_step1', update_user_step1, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                        'Authorization': localStorage.oauth_token
+                    }
+                })
+                .then(function(response) {
+                    if (response.data.status == "Success") {
+                      success_response("Success", true, "register2.html");
+                    } else {
+                        warning_response(response.data.message);
+                    }
+                })
+                .catch(function(data) {
+                    console.log(data);
+                    error_response();
+                });
+        }
+
 </script>
