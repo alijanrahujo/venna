@@ -61,7 +61,7 @@ function warning_response(data) {
             text: "Token Expiry, Please Login Again !",
             confirmButtonText: 'OK'
         }).then((result) => {
-            window.location.href = "../../login.html";
+            window.location.href = "login.html";
         })
     } else {
         Swal.fire({
@@ -95,17 +95,18 @@ function check_user_status() {
             }
         })
         .then(function(response) {
+
             if (response.data.status == "Success") {
                 if (response.data.data.is_step1 == 0) {
-                    window.location.href = "register_package.html";
+                    window.location.href = "register1.html";
                 } else if (response.data.data.is_step2 == 0) {
-                    window.location.href = "register_package2.html";
+                    window.location.href = "register2.html";
                 } else if (response.data.data.is_step3 == 0) {
-                    window.location.href = "register_package3.html";
+                    window.location.href = "register3.html";
                 } else if (response.data.data.is_step4 == 0) {
-                    window.location.href = "register_package4.html";
+                    window.location.href = "register4.html";
                 } else if (response.data.data.is_done == 0) {
-                    window.location.href = "register_package_review.html";
+                    window.location.href = "register1.html";
                 } else {
                     if (typeof localStorage.user_id == "undefined" || localStorage.user_id == "") {
                         localStorage.username = response.data.data.username;

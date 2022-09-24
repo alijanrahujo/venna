@@ -115,6 +115,10 @@
                       <label for="cfm_password">Comfirm Password</label>
                       <input type="password" name="cfm_password" class="form-control" id="cfm_password">
                     </div>
+
+                    <input type="hidden" class="form-control" name="referral_username" id="hidden_referral_username">
+                    <input type="hidden" class="form-control" name="voucher_code" id="voucher_code">
+
                   <input type="submit" value="Submit" class="btn btn-pill text-white btn-block btn-primary">
                 </form>
               </div>
@@ -145,7 +149,6 @@
   })
 
   $('#referral').click(function(){
-
         var check_username = new FormData();
         check_username.set('api_key', api_key);
         check_username.set('username', $("#username").val());
@@ -153,9 +156,10 @@
         axios.post(address + 'v1/Auth_Api/check_referral_username', check_username, apiHeader)
             .then(function(response) {
                 if (response.data.status == "Success") {
-                    console.log(response.data.data);
-                    //$("#hidden_referral_username").val(response.data.data.username);
-                    //$("#signUpModal").modal("show");
+                    console.log(response);
+                    $("#hidden_referral_username").val(response.data.data.username);
+                    $("#register_form").show();
+                    $("#first_step").hide();
                 } else {
                     warning_response(response.data.message);
                 }
@@ -163,4 +167,63 @@
             .catch(function(data) {});
   })
 
+  $('#register_form').submit(function(e) {
+        e.preventDefault();
+        var register_user = new FormData(this);
+        register_user.set('api_key', api_key);
+        axios.post(address + 'v1/Auth_Api/register', register_user, apiHeader)
+            .then(function(response) {
+                if (response.data.status == "Success") {
+                    Swal.fire({
+                        type: "success",
+                        text: "Register Successfully !",
+                        confirmButtonText: 'OK'
+                    }).then((result) => {
+                        call_login(response.data.data);
+                    })
+                } else {
+                    warning_response(response.data.message);
+                }
+            })
+            .catch(function(data) {
+
+            });
+    });
+
+
+    function call_login(data) {
+        var agent_login = new FormData();
+        agent_login.set('api_key', api_key);
+        agent_login.set('email', data.email);
+        agent_login.set('password', data.password);
+
+        axios.post(address + 'v1/Auth_Api/login', agent_login, apiHeader)
+            .then(function(response) {
+                if (response.data.status == "Success") {
+                    localStorage.oauth_token = response.data.data.oauth_client_token;
+                    localStorage.access_token = response.data.data.access_token;
+                    localStorage.user_id = response.data.data.user_id;
+
+                    if (response.data.data.is_step1 == 0) {
+                        success_response(true, "register1.html");
+                    } else if (response.data.data.is_step2 == 0) {
+                        success_response(true, "register2.html");
+                    } else if (response.data.data.is_step3 == 0) {
+                        success_response(true, "register3.html");
+                    } else if (response.data.data.is_step4 == 0) {
+                        success_response(true, "register4.html");
+                    } else if (response.data.data.is_done == 0) {
+                        success_response(true, "soft/pages/dashboard.html");
+                    } else {
+                        success_response(true, "soft/pages/dashboard.html");
+                    }
+                } else {
+                    warning_response(response.data.message);
+                }
+            })
+            .catch(function(data) {
+                console.log(data);
+                error_response();
+            });
+    }
 </script>
