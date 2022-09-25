@@ -9,9 +9,9 @@ include("head.php");
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
             <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Pages</a></li>
-            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Dashboard</li>
+            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Profile</li>
           </ol>
-          <h6 class="font-weight-bolder mb-0">Dashboard</h6>
+          <h6 class="font-weight-bolder mb-0">Profile</h6>
         </nav>
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -111,9 +111,176 @@ include("head.php");
       </div>
     </nav>
     <!-- End Navbar -->
-    <div>
+    <div class="container-fluid py-4">
+      
+      <h3>My Profile</h3>
+      <div class="row my-4">
+        <div class="col-lg-6 col-md-6 mb-md-0 mb-4">
+          <div class="card">
+            <div class="card-header pb-0">
+            <h5><center>My Information</center></h5>
+                
+            </div>
+            <div class="card-body px-0 pb-2">
+            <div class="flex p-2">
+            <div class="form-block">
+                  <form method="post">
+                    <div class="form-group">
+                    <label for="password" class="float-left">Email</label>
+                    <input type="email" name="email" class="form-control" id="email">
+                    </div>
+                  <div class="row">
+                    <div class="form-group">
+                    <label for="password" class="float-left">Username</label>
+                    <input type="text" name="password" class="form-control" id="password">
+                    </div>
+                    <div class="form-group">
+                      <label for="password">Full Name</label>
+                      <input type="text" name="password" class="form-control " id="password">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="email">Phone No:</label>
+                      <input type="text" name="email" class="form-control col-md-4" id="email">
+                      </div>
+                  
 
+                  <input type="submit" value="Submit" class="btn btn-pill text-white btn-block btn-primary">
+
+                 
+                </form>
+              </div>
+</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-6">
+        <div class="card">
+            <div class="card-header pb-0">
+            <h5><center>Adresss</center></h5>
+                
+            </div>
+            <div class="card-body px-0 pb-2">
+            <div class="flex p-2">
+            <div class="form-block">
+                  <form method="post">
+                    <div class="form-group">
+                    <label for="text" class="float-left">Name</label>
+                    <input type="text" name="name" class="form-control" id="email" placeholder="e.g. home">
+                    </div>
+                  
+                    <div class="form-group">
+                    <label for="password" class="float-left">Address</label>
+                    <input type="text" name="address" class="form-control" id="password">
+                    </div>
+                    <div class="row">
+                    <div class="form-group col-md-9">
+                    <label for="password">City</label>
+                    <input type="text" name="password" class="form-control" id="password">
+                    </div>
+                    <div class="form-group col-md-3">
+                      <label for="password">State*</label>
+                      <input type="text" name="password" class="form-control " id="password">
+                      </div>
+                    </div>
+                      <div class="form-group">
+                      <label for="email">State</label>
+                      <input type="text" name="email" class="form-control col-md-4" id="email">
+                      </div>
+                  
+
+                  <input type="submit" value="Submit" class="btn btn-pill text-white btn-block btn-primary">
+
+                 
+                </form>
+              </div>
+</div>
+                </div>
+          </div>
+        </div>
+        <div class="container-fluid py-4">
+          <div class="row my-4">
+        <div class="col-lg-6 col-md-6 mb-md-0 mb-4">
+          <div class="card">
+            <div class="card-header pb-0">
+            <h5><center>Security</center></h5>
+                
+            </div>
+            <div class="card-body px-0 pb-2">
+            <div class="flex p-2">
+            <div class="form-block">
+                  <form method="post">
+                    <div class="form-group">
+                    <label for="text" class="float-left">New Security Code</label>
+                    <input type="text" name="scode" class="form-control">
+                    </div>
+                  
+                    <div class="form-group">
+                    <label for="password" class="float-left">Confirm Security code</label>
+                    <input type="text" name="cscode" class="form-control">
+                    </div>
+                    <div class="form-group">
+                    <label for="password">Old Password</label>
+                    <input type="password" name="password" class="form-control" id="password">
+                    </div>
+                    <div class="form-group">
+                      <label for="password">New Password</label>
+                      <input type="password" name="password" class="form-control " id="password">
+                      </div>
+                      <div class="form-group">
+                      <label for="email">Confirm Password</label>
+                      <input type="password" name="email" class="form-control col-md-4" id="email">
+                      </div>
+                  
+
+                  <input type="submit" value="Submit" class="btn btn-pill text-white btn-block btn-primary">
+
+                 
+                </form>
+              </div>
+</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-6">
+          <div class="card">
+            <div class="card-header pb-0">
+            <h5><center>Bank Details</center></h5>
+                
+                </div>
+                <div class="card-body px-0 pb-2">
+                <div class="flex p-2">
+                <div class="form-block">
+                <form id="login_form" method="post">
+                    <div class="form-group first">
+                    <label for="password">Bank Name</label>
+                      <select class="form-control" id="select">
+                        <option selected>Open this select menu</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                      </select>
+                    </div>
+                    <div class="form-group last mb-4">
+                    <label for="password">Bank Account Holder</label>
+                    <input type="password" name="password" class="form-control" id="password">
+                    </div>
+                    <div class="form-group last mb-4">
+                        <label for="password">Bank Account Number</label>
+                        <input type="password" name="password" class="form-control" id="password">
+                        </div>
+                  </div>
+                  <input type="submit" value="Submit" class="btn btn-pill text-white btn-block btn-primary">
+                
+
+                 
+                </form>
+                  
     </div>
+                </div>
+          </div>
+        </div>
+      </div>
       <?php
       include("foot.php");
       ?>
