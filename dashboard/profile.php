@@ -179,7 +179,7 @@ include("head.php");
                     <input type="text" name="password" class="form-control" id="password">
                     </div>
                     <div class="form-group col-md-3">
-                      <label for="password">State*</label>
+                      <label for="password">Postal code*</label>
                       <input type="text" name="password" class="form-control " id="password">
                       </div>
                     </div>
