@@ -270,7 +270,7 @@ class Auth_Api extends Base_Controller
                                     'access_token' => $access_token,
                                     'register_ip' => $ipaddr
                                 );
-                                if ($subdomain == "mudahmakan") {
+                                if ($subdomain == "mudahmakan" || $subdomain == 'venna') {
                                     $data_register['is_halal'] = 1;
                                 }
                                 if ($platform == "DEFAULT") {
@@ -371,11 +371,11 @@ class Auth_Api extends Base_Controller
             'username' => $username
         );
         $user_info = $this->Api_Model->get_rows_info(TBL_USER, "*", $where_condition);
-        if (isset($user_info['id']) && $user_info['id'] > 0) {
+        if (isset($user_info['id']) && $user_info['id'] > 0 && $username !="") {
             $company_info = $this->Api_Model->get_rows_info(TBL_COMPANY, "id, subdomain", array('id' => $user_info['company_id'], 'active' => 1));
             $company_subdomain = isset($company_info['id']) ? $company_info['subdomain'] : "";
 
-            if ($company_subdomain == $subdomain || $subdomain == "mudahmakan") {
+            if ($company_subdomain == $subdomain || $subdomain == "venna") {
                 $json_response = array(
                     'is_available' => 1,
                     'username' => $username

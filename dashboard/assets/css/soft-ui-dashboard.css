@@ -22617,7 +22617,11 @@ hr.horizontal.gray-light {
 
   .navbar-vertical.navbar-expand-sm .navbar-collapse {
     display: block;
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> 55763c679ad7c0b7d4dd64a47ec53aed45628c9e
   }
 
   .navbar-vertical.navbar-expand-sm>[class*="container"] {
@@ -22716,7 +22720,10 @@ hr.horizontal.gray-light {
 
   .navbar-vertical.navbar-expand-md .navbar-collapse {
     display: block;
+<<<<<<< HEAD
   
+=======
+>>>>>>> 55763c679ad7c0b7d4dd64a47ec53aed45628c9e
   }
 
   .navbar-vertical.navbar-expand-md>[class*="container"] {
@@ -22815,7 +22822,10 @@ hr.horizontal.gray-light {
 
   .navbar-vertical.navbar-expand-lg .navbar-collapse {
     display: block;
+<<<<<<< HEAD
   
+=======
+>>>>>>> 55763c679ad7c0b7d4dd64a47ec53aed45628c9e
   }
 
   .navbar-vertical.navbar-expand-lg>[class*="container"] {
@@ -23012,6 +23022,10 @@ hr.horizontal.gray-light {
 
   .navbar-vertical.navbar-expand-xxl .navbar-collapse {
     display: block;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 55763c679ad7c0b7d4dd64a47ec53aed45628c9e
   }
 
   .navbar-vertical.navbar-expand-xxl>[class*="container"] {

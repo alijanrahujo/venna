@@ -92,37 +92,37 @@
             <div class="col-md-12">
               <div class="form-block">
                   <div class="mb-4">
-                    <h3><center>Sign Up Your User Account</center></h3>
+                    <h3><center>Contact Details</center></h3>
                     <p class="mb-4"><center>Fill all form field to go to next step</center></p>
                 </div>
-                <form id="login_form" method="post">
+                <form id="register_step2_form" method="post">
                   <div id="first_step">
                     <label style="font-size: small; color: gray;">Enter your full name as indicated on your NRIC or passport</label>
                     <div class="form-group first">
-                    <label for="email">Full Name</label>
-                    <input type="email" name="email" class="form-control" id="email">
+                    <label for="fullname">Full Name</label>
+                    <input type="text" name="fullname" class="form-control" id="fullname">
                     </div>
                     <label style="font-size: small; color: gray;">Enter your unique user name so your friends can find you easily. This can not be chaged after setting up.</label>
                   <div class="form-group last mb-4">
-                    <label for="password">Username</label>
-                    <input type="password" name="password" class="form-control" id="password">
+                    <label for="username">Username</label>
+                    <input type="text" name="username" class="form-control" id="username">
                     </div>
                     <div class="form-group last mb-4">
-                    <label for="password">Phone Number</label>
-                    <input type="password" name="password" class="form-control" id="password">
+                    <label for="phone_no">Phone Number</label>
+                    <input type="text" name="phone_no" class="form-control" id="phone_no">
                     </div>
                     <div class="form-group last mb-4">
-                        <label for="password">IC Number</label>
-                        <input type="password" name="password" class="form-control" id="password">
+                        <label for="ic_no">IC Number</label>
+                        <input type="text" name="ic_no" class="form-control" id="ic_no">
                         </div>
                         <label style="font-size: small; color: gray;">Enter 6 digit security code, your secret key is required to withdraw money and purchase stocks.</label>
                     <div class="form-group last mb-4">
-                    <label for="password">Security Code</label>
-                    <input type="password" name="password" class="form-control" id="password">
+                    <label for="pincode">Security Code</label>
+                    <input type="password" name="pincode" class="form-control" id="pincode">
                     </div>
                     <div class="form-group last mb-4">
-                    <label for="password">Confirm Security Code</label>
-                    <input type="password" name="password" class="form-control" id="password">
+                    <label for="cfm_pincode">Confirm Security Code</label>
+                    <input type="password" name="cfm_pincode" class="form-control" id="cfm_pincode">
                     </div>
                   </div>
                   <input type="submit" value="Submit" class="btn btn-pill text-white btn-block btn-primary">
@@ -153,34 +153,27 @@
 
 <script>
   $(document).ready(function() {
-            localStorage.removeItem("user_id");
+            check_user_step2();
         });
 
-        $('#login_form').submit(function(e) {
-            e.preventDefault();
+        function check_user_step2() {
+            var get_user_information = new FormData();
+            get_user_information.set('api_key', api_key);
+            get_user_information.set('access_token', localStorage.access_token);
+            get_user_information.set('user_id', localStorage.user_id);
 
-            var agent_login = new FormData(this);
-            agent_login.set('api_key', api_key);
-
-            axios.post(address + 'v1/Auth_Api/login', agent_login, apiHeader)
+            axios.post(address + 'v1/Basic_Api/get_user_information', get_user_information, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                        'Authorization': localStorage.oauth_token
+                    }
+                })
                 .then(function(response) {
                     if (response.data.status == "Success") {
-                        localStorage.oauth_token = response.data.data.oauth_client_token;
-                        localStorage.access_token = response.data.data.access_token;
-                        localStorage.user_id = response.data.data.user_id;
-                        if (response.data.data.is_step1 == 0) {
-                            success_response("Success", true, "register_package.html");
-                        } else if (response.data.data.is_step2 == 0) {
-                            success_response("Success", true, "register_package2.html");
-                        } else if (response.data.data.is_step3 == 0) {
-                            success_response("Success", true, "register_package3.html");
-                        } else if (response.data.data.is_step4 == 0) {
-                            success_response("Success", true, "register_package4.html");
-                        } else if (response.data.data.is_done == 0) {
-                            success_response("Success", true, "register_package_review.html");
-                        } else {
-                            success_response("Success", true, "soft/pages/dashboard.html");
-                        }
+                        $("#fullname").val(response.data.data.fullname);
+                        $("#username").val(response.data.data.username);
+                        $("#phone_no").val(response.data.data.phone_no);
+                        $("#ic_no").val(response.data.data.ic);
                     } else {
                         warning_response(response.data.message);
                     }
@@ -189,5 +182,41 @@
                     console.log(data);
                     error_response();
                 });
+        }
+
+        $('#register_step2_form').submit(function(e) {
+            e.preventDefault();
+
+            var register_step2 = new FormData(this);
+            register_step2.set('api_key', api_key);
+            register_step2.set('access_token', localStorage.access_token);
+            register_step2.set('user_id', localStorage.user_id);
+
+            axios.post(address + 'v1/Basic_Api/update_user_step2', register_step2, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                        'Authorization': localStorage.oauth_token
+                    }
+                })
+                .then(function(response) {
+                    if (response.data.status == "Success") {
+                      success_response("Success", true, "register3.html");
+                    } else {
+                        warning_response(response.data.message);
+                    }
+                })
+                .catch(function(data) {
+                    console.log(data);
+                    error_response();
+                });
+        });
+
+        $(document).ready(function() {
+            $("input[name='pincode']").on('input', function(e) {
+                $(this).val($(this).val().replace(/[^0-9]/g, ''));
+            });
+            $("input[name='cfm_pincode']").on('input', function(e) {
+                $(this).val($(this).val().replace(/[^0-9]/g, ''));
+            });
         });
 </script>
