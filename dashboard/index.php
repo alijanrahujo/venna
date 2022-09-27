@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <!--
 =========================================================
 * Soft UI Dashboard - v1.0.6
@@ -359,13 +358,6 @@
   </aside>
   
   <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
-=======
-<?php
-include("head.php");
-?>
-
-<main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
->>>>>>> 55763c679ad7c0b7d4dd64a47ec53aed45628c9e
     <!-- Navbar -->
     <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" navbar-scroll="true">
       <div class="container-fluid py-1 px-3">
