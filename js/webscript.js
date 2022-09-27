@@ -1,3 +1,4 @@
+
 function success_response(data, redirect = false, redirect_page) {
     if (redirect) {
         Swal.fire({
@@ -123,6 +124,10 @@ function check_user_status() {
         });
 }
 
+
+
+
+
 async function get_member_info() {
 
     var get_member_info = new FormData();
@@ -138,7 +143,9 @@ async function get_member_info() {
     });
 }
 
+
+
 (async () => {
     var user = await get_member_info();
-    console.log(user.data.data.company_type);
+    console.log(user.data);
 })()

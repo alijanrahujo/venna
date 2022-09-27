@@ -42,7 +42,7 @@ include("head.php");
                   <a class="dropdown-item border-radius-md" href="javascript:;">
                     <div class="d-flex py-1">
                       <div class="my-auto">
-                        <img src="../assets/img/team-2.jpg" class="avatar avatar-sm  me-3 ">
+                        <img src="assets/img/team-2.jpg" class="avatar avatar-sm  me-3 ">
                       </div>
                       <div class="d-flex flex-column justify-content-center">
                         <h6 class="text-sm font-weight-normal mb-1">
@@ -60,7 +60,7 @@ include("head.php");
                   <a class="dropdown-item border-radius-md" href="javascript:;">
                     <div class="d-flex py-1">
                       <div class="my-auto">
-                        <img src="../assets/img/small-logos/logo-spotify.svg" class="avatar avatar-sm bg-gradient-dark  me-3 ">
+                        <img src="assets/img/small-logos/logo-spotify.svg" class="avatar avatar-sm bg-gradient-dark  me-3 ">
                       </div>
                       <div class="d-flex flex-column justify-content-center">
                         <h6 class="text-sm font-weight-normal mb-1">
@@ -284,3 +284,23 @@ include("head.php");
       <?php
       include("foot.php");
       ?>
+
+<script>
+
+check_user_status();
+
+(async () => {
+  var user = await get_member_info();
+  console.log(user.data.data);
+  // $(".u_name").html(user.data.data.account_name);
+  // $(".u_email").html(user.data.data.email);
+  // $(".u_phone").html(user.data.data.account_no);
+  // $("#profile-img").attr("src", user.data.data.profile_image);
+  // $(".stock").html(user.data.data.stock_balance);
+  // $(".wallet").html(user.data.data.total_wallet);
+  // $(".network").html(user.data.data.total_organization);
+  // $(".voucher").html(user.data.data.total_voucher);
+
+})()
+
+</script>
