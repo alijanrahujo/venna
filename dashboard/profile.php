@@ -292,14 +292,14 @@ check_user_status();
 (async () => {
   var user = await get_member_info();
   console.log(user.data.data);
-  // $(".u_name").html(user.data.data.account_name);
-  // $(".u_email").html(user.data.data.email);
-  // $(".u_phone").html(user.data.data.account_no);
-  // $("#profile-img").attr("src", user.data.data.profile_image);
-  // $(".stock").html(user.data.data.stock_balance);
-  // $(".wallet").html(user.data.data.total_wallet);
-  // $(".network").html(user.data.data.total_organization);
-  // $(".voucher").html(user.data.data.total_voucher);
+  $(".u_name").html(user.data.data.account_name);
+  $(".u_email").html(user.data.data.email);
+  $(".u_phone").html(user.data.data.account_no);
+  $("#profile-img").attr("src", user.data.data.profile_image);
+  $(".stock").html(user.data.data.stock_balance);
+  $(".wallet").html(user.data.data.total_wallet);
+  $(".network").html(user.data.data.total_organization);
+  $(".voucher").html(user.data.data.total_voucher);
 
 })()
 
