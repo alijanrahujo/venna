@@ -148,7 +148,7 @@ include("head.php");
                 <div class="form-block">
                   <form method="post">
                     <div class="form-group">
-                    <label for="text" class="float-left">Name</label>
+                    <label for="text" class="float-left">Order Quantity</label>
                     <input type="text" name="name" class="form-control" id="email" placeholder="e.g. home">
                     </div>
                   
@@ -190,14 +190,14 @@ include("head.php");
                 <div class="form-block">
                   <form method="post">
                     <div class="form-group">
-                    <label for="text" class="float-left">Name</label>
+                    <label for="text" class="float-left">Security code</label>
                     <input type="text" name="name" class="form-control" id="email" placeholder="e.g. home">
                     </div>
                     
               </div>
 </div></div></div>
 </div>
-      <input type="submit" value="Submit" class="btn btn-pill text-white btn-block btn-primary">
+      <input type="submit" value="Place Order" class="btn btn-pill text-white btn-block btn-primary">
                 </form>
                 <div class="container-fluid py-4">
         <div class="col-lg-12">
