@@ -138,13 +138,10 @@ include("head.php");
       <td>...</td>
     </tr>
   </table>
+  <br>
+
 </div>
-</div></div></div>
-</div>
-<div class="container-fluid py-4">
-        <div class="col-lg-12">
-          <div class="card">
-            <div class="flex p-2">
+
                 <div class="form-block">
                   <form method="post">
                     <div class="form-group">
@@ -153,13 +150,9 @@ include("head.php");
                     </div>
                   
                 </form>
+                <br>
               </div>
-</div></div></div>
-</div>
-              <div class="container-fluid py-4">
-              <div class="col-lg-12">
-          <div class="card">
-            <div class="flex p-2">
+
         <div class="table-responsive">
   <table class="table">
   <tr>
@@ -180,13 +173,9 @@ include("head.php");
       <td>...</td>
     </tr>
   </table>
+  <br>
 </div>
-</div></div></div>
-</div>
-<div class="container-fluid py-4">
-        <div class="col-lg-12">
-          <div class="card">
-            <div class="flex p-2">
+
                 <div class="form-block">
                   <form method="post">
                     <div class="form-group">
@@ -194,15 +183,11 @@ include("head.php");
                     <input type="text" name="name" class="form-control" id="email" placeholder="e.g. home">
                     </div>
                     
-              </div>
-</div></div></div>
+
 </div>
       <input type="submit" value="Place Order" class="btn btn-pill text-white btn-block btn-primary">
                 </form>
-                <div class="container-fluid py-4">
-        <div class="col-lg-12">
-          <div class="card">
-            <div class="flex p-2">
+                <br>
                 <div class="form-block">
                   <form method="post">
                     <div class="form-group">
