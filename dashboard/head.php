@@ -32,6 +32,8 @@
   <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
   <link href="assets/css/nucleo-svg.css" rel="stylesheet" />
   <!-- CSS Files -->
+  <link href="assets/css/all.css" rel="stylesheet" />
+
   <link id="pagestyle" href="assets/css/soft-ui-dashboard.css?v=1.0.6" rel="stylesheet" />
   <link rel="stylesheet" href="../css/sweetalert2.min.css" type="text/css">
 </head>

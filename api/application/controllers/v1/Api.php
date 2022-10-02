@@ -225,8 +225,8 @@ class  Api extends Base_Controller {
                 }
             }
 
-            $voucher_info = $this->Api_Model->get_rows_info(TBL_BIG_PRESENT, "id, COUNT(*) as total_voucher", array('type' => "VOUCHER", 'active' => 1, 'balance_quantity !=' => 0, 'user_id' => $user_id, 'total_stock' => 60));
-            $total_voucher = isset($voucher_info['id']) ? $voucher_info['total_voucher'] : 0;
+            $voucher_info = $this->Api_Model->get_rows_info(TBL_BIG_PRESENT, "COUNT(*) as total_voucher", array('type' => "VOUCHER", 'active' => 1, 'balance_quantity !=' => 0, 'user_id' => $user_id, 'total_stock' => 60));
+            $total_voucher = isset($voucher_info['total_voucher']) ? $voucher_info['total_voucher'] : 0;
 
             $data = array(
                 'company_type' => $company_type,

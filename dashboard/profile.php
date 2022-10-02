@@ -127,25 +127,25 @@ include("head.php");
                   <form method="post">
                     <div class="form-group">
                     <label for="password" class="float-left">Email</label>
-                    <input type="email" name="email" class="form-control" id="email">
+                    <input type="email" name="email" class="form-control" id="user_email">
                     </div>
                   <div class="row">
                     <div class="form-group">
-                    <label for="password" class="float-left">Username</label>
-                    <input type="text" name="password" class="form-control" id="password">
+                    <label for="username" class="float-left">Username</label>
+                    <input type="text" name="username" class="form-control" id="user_username">
                     </div>
                     <div class="form-group">
-                      <label for="password">Full Name</label>
-                      <input type="text" name="password" class="form-control " id="password">
+                      <label for="fullname">Full Name</label>
+                      <input type="text" name="fullname" class="form-control " id="user_fullname">
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="email">Phone No:</label>
-                      <input type="text" name="email" class="form-control col-md-4" id="email">
+                      <label for="phone_no">Phone No:</label>
+                      <input type="text" name="phone_no" class="form-control col-md-4" id="user_phone_no">
                       </div>
                   
 
-                  <input type="submit" value="Submit" class="btn btn-pill text-white btn-block btn-primary">
+                  <input type="button" onclick="update_profile()" value="Submit" class="btn btn-pill text-white btn-block btn-primary">
 
                  
                 </form>
@@ -163,29 +163,31 @@ include("head.php");
             <div class="card-body px-0 pb-2">
             <div class="flex p-2">
             <div class="form-block">
-                  <form method="post">
+                <div id="address_list"></div>
+
+                  <form method="post" id="address_form">
                     <div class="form-group">
-                    <label for="text" class="float-left">Name</label>
-                    <input type="text" name="name" class="form-control" id="email" placeholder="e.g. home">
+                    <label for="name" class="float-left">Name</label>
+                    <input type="text" name="name" class="form-control" id="name" placeholder="e.g. home">
                     </div>
                   
                     <div class="form-group">
-                    <label for="password" class="float-left">Address</label>
-                    <input type="text" name="address" class="form-control" id="password">
+                    <label for="address" class="float-left">Address</label>
+                    <input type="text" name="address" class="form-control" id="address">
                     </div>
                     <div class="row">
                     <div class="form-group col-md-9">
-                    <label for="password">City</label>
-                    <input type="text" name="password" class="form-control" id="password">
+                    <label for="city">City</label>
+                    <input type="text" name="city" class="form-control" id="city">
                     </div>
                     <div class="form-group col-md-3">
-                      <label for="password">Postal code*</label>
-                      <input type="text" name="password" class="form-control " id="password">
+                      <label for="postcode">Postal code*</label>
+                      <input type="number" name="postcode" class="form-control " id="postcode">
                       </div>
                     </div>
                       <div class="form-group">
-                      <label for="email">State</label>
-                      <input type="text" name="email" class="form-control col-md-4" id="email">
+                      <label for="state">State</label>
+                      <input type="text" name="state" class="form-control col-md-4" id="state">
                       </div>
                   
 
@@ -193,6 +195,11 @@ include("head.php");
 
                  
                 </form>
+
+                <div class="form-group">
+                    <button type="buttion" class="btn btn-success" onclick="oppen_add_address()">Add Address</button>
+                </div>
+
               </div>
 </div>
                 </div>
@@ -211,25 +218,25 @@ include("head.php");
             <div class="form-block">
                   <form method="post">
                     <div class="form-group">
-                    <label for="text" class="float-left">New Security Code</label>
-                    <input type="text" name="scode" class="form-control">
+                    <label for="new_security_code" class="float-left">New Security Code</label>
+                    <input type="password" name="new_security_code" class="form-control" id="new_pincode">
                     </div>
                   
                     <div class="form-group">
-                    <label for="password" class="float-left">Confirm Security code</label>
-                    <input type="text" name="cscode" class="form-control">
+                    <label for="confirm_security_code" class="float-left">Confirm Security code</label>
+                    <input type="password" name="confirm_security_code" class="form-control" id="confirm_new_pincode">
                     </div>
                     <div class="form-group">
                     <label for="password">Old Password</label>
-                    <input type="password" name="password" class="form-control" id="password">
+                    <input type="password" name="original_password" class="form-control" id="password">
                     </div>
                     <div class="form-group">
-                      <label for="password">New Password</label>
-                      <input type="password" name="password" class="form-control " id="password">
+                      <label for="new_password">New Password</label>
+                      <input type="password" name="new_password" class="form-control " id="new_password">
                       </div>
                       <div class="form-group">
-                      <label for="email">Confirm Password</label>
-                      <input type="password" name="email" class="form-control col-md-4" id="email">
+                      <label for="confirm_password">Confirm Password</label>
+                      <input type="password" name="confirm_password" class="form-control col-md-4" id="confirm_new_password">
                       </div>
                   
 
@@ -253,26 +260,44 @@ include("head.php");
                 <div class="form-block">
                 <form id="login_form" method="post">
                     <div class="form-group first">
-                    <label for="password">Bank Name</label>
-                      <select class="form-control" id="select">
+                    <label for="bank">Bank Name</label>
+                      <select class="form-control" name="bank_name" id="bank_name">
                         <option selected>Open this select menu</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                        <option value="Maybank Berhad">Maybank Berhad</option>
+                        <option value="CIMB Bank Berhad">CIMB Bank Berhad</option>
+                        <option value="Public Bank Berhad">Public Bank Berhad</option>
+                        <option value="RHB Bank Berhad">RHB Bank Berhad</option>
+                        <option value="Hong Leong Bank Berhad">Hong Leong Bank Berhad</option> 
+                        <option value="AmBank (M) Berhad">AmBank (M) Berhad</option>
+                        <option value="UOB Malaysia">UOB Malaysia</option>
+                        <option value="Bank Rakyat">Bank Rakyat</option>
+                        <option value="Bank of China (Malaysia) Berhad">Bank of China (Malaysia) Berhad</option>
+                        <option value="OCBC Bank (Malaysia) Berhad">OCBC Bank (Malaysia) Berhad</option>
+                        <option value="HSBC Bank Malaysia Berhad">HSBC Bank Malaysia Berhad</option>
+                        <option value="Bank Islam Malaysia">Bank Islam Malaysia</option>
+                        <option value="Affin Bank Berhad">Affin Bank Berhad</option>
+                        <option value="Alliance Bank Malaysia Berhad">Alliance Bank Malaysia Berhad</option>
+                        <option value="Standard Chartered Bank Malaysia">Standard Chartered Bank Malaysia</option>
+                        <option value="MBSB Bank Berhad">MBSB Bank Berhad</option>
+                        <option value="Citibank Berhad">Citibank Berhad</option>
+                        <option value="Banl Simpanan Nasional(BSN)">Bank Simpanan Nasional(BSN)</option>
+                        <option value="Bank Muamalat Malaysia">Bank Muamalat Malaysia</option>
+                        <option value="Agrobank">Agrobank</option>
+                        <option value="Al-Rajhi Bank">Al-Rajhi Bank</option>
+                        <option value="Co-opbank Pertama">Co-opbank Pertama</option>
                       </select>
                     </div>
                     <div class="form-group last mb-4">
-                    <label for="password">Bank Account Holder</label>
-                    <input type="password" name="password" class="form-control" id="password">
+                      <label for="account_name">Bank Account Holder</label>
+                      <input type="text" name="account_name" class="form-control" id="account_name">
                     </div>
                     <div class="form-group last mb-4">
-                        <label for="password">Bank Account Number</label>
-                        <input type="password" name="password" class="form-control" id="password">
+                        <label for="account_no">Bank Account Number</label>
+                        <input type="number" name="account_no" class="form-control" id="account_no">
                         </div>
                   </div>
-                  <input type="submit" value="Submit" class="btn btn-pill text-white btn-block btn-primary">
-                
-
+                  <input type="button" value="Submit" onclick="update_profile()" class="btn btn-pill text-white btn-block btn-primary">
+              
                  
                 </form>
                   
@@ -286,5 +311,380 @@ include("head.php");
       ?>
 
 <script>
+// function update_profile() {
+//         $("#edit_fullname").val($("#user_fullname").val());
+//         $("#edit_phone_no").val($("#user_phone_no").val());
+//         $("#edit_bank_name").val($("#bank_name").val());
+//         $("#edit_account_name").val($("#account_name").val());
+//         $("#edit_account_no").val($("#account_no").val());
+//         $('#security_pin').modal('show');
+//     }
 
+    // function oppen_add_address() {
+    //     $('#addressModal').modal('show');
+    // }
+
+    // function close_input_pin_key() {
+    //     $('#security_pin').modal('hide')
+    // }
+
+    // function close_add_address() {
+    //     $('#addressModal').modal('hide')
+    // }
+
+    // function edit_address(address_id) {
+    //     var update_password = new FormData();
+    //     update_password.set('api_key', api_key);
+    //     update_password.set('access_token', localStorage.access_token);
+    //     update_password.set('user_id', localStorage.user_id);
+    //     update_password.set('address_id', address_id);
+
+    //     axios.post(address + 'v1/Api/get_user_address_info', update_password, {
+    //             headers: {
+    //                 'Content-Type': 'multipart/form-data',
+    //                 'Authorization': localStorage.oauth_token
+    //             }
+    //         })
+    //         .then(function(response) {
+    //             if (response.data.status == "Success") {
+    //                 $("#edit_address_name").val(response.data.data.name);
+    //                 $("#edit_address").val(response.data.data.address);
+    //                 $("#edit_city").val(response.data.data.city);
+    //                 $("#edit_state").val(response.data.data.state);
+    //                 $("#edit_postcode").val(response.data.data.postcode);
+    //                 $("#edit_address_id").val(response.data.data.id);
+    //                 $('#editAddressModal').modal('show');
+    //             } else {
+    //                 warning_response(response.data.message);
+    //             }
+    //         })
+    //         .catch(function(data) {
+    //             console.log(data);
+    //             error_response();
+    //         });
+
+    // }
+
+    // function close_edit_address() {
+    //     $('#edit_address').modal('hide')
+    // }
+
+    // function open_change_password() {
+    //     $('#change_password').modal('show')
+    // }
+
+    // function open_change_second_password() {
+    //     $('#change_second_password').modal('show')
+    // }
+
+    // function go_logout() {
+    //     window.location.href = "login.html";
+    // }
+
+    $(document).ready(function() {
+        get_member_info();
+        get_address();
+    });
+
+    function get_member_info() {
+        var get_member_info = new FormData();
+        get_member_info.set('api_key', api_key);
+        get_member_info.set('access_token', localStorage.access_token);
+        get_member_info.set('user_id', localStorage.user_id);
+
+        axios.post(address + 'v1/Api/get_member_info', get_member_info, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    'Authorization': localStorage.oauth_token
+                }
+            })
+            .then(function(response) {
+                if (response.data.status == "Success") {
+                    $("#package").html(response.data.data.package);
+                    $("#username").html(response.data.data.username);
+                    $("#user_email").val(response.data.data.email);
+                    $("#user_username").val(response.data.data.username);
+                    $("#user_fullname").val(response.data.data.fullname);
+                    $("#user_phone_no").val(response.data.data.phone_no);
+                    $('#bank_name option[value="' + response.data.data.bank_name + '"]').prop('selected', true);
+                    $("#account_name").val(response.data.data.account_name);
+                    $("#account_no").val(response.data.data.account_no);
+                    $("#profile-img").attr("src", response.data.data.profile_image);
+                } else {
+                    warning_response(response.data.message);
+                }
+            })
+            .catch(function(data) {
+                console.log(data);
+                error_response();
+            });
+    }
+
+    $('#profile_form').submit(function(e) {
+        e.preventDefault();
+
+        var edit_profile = new FormData(this);
+        edit_profile.set('api_key', api_key);
+        edit_profile.set('access_token', localStorage.access_token);
+        edit_profile.set('user_id', localStorage.user_id);
+        edit_profile.set('security_code', $("#security_code").val());
+
+        axios.post(address + 'v1/Api/update_profile', edit_profile, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    'Authorization': localStorage.oauth_token
+                }
+            })
+            .then(function(response) {
+                if (response.data.status == "Success") {
+                    Swal.fire({
+                        type: "success",
+                        text: "Update Successfully !",
+                        confirmButtonText: 'OK'
+                    }).then((result) => {
+                        localStorage.route = "edit_profile.html";
+                        $("#content").html("");
+                        $("#content").load("edit_profile.html");
+                        location.reload();
+                    })
+                } else {
+                    warning_response(response.data.message);
+                }
+            })
+            .catch(function(data) {
+                console.log(data);
+                error_response();
+            });
+    });
+
+    $('#change_password_form').submit(function(e) {
+        e.preventDefault();
+
+        var update_password = new FormData(this);
+        update_password.set('api_key', api_key);
+        update_password.set('access_token', localStorage.access_token);
+        update_password.set('user_id', localStorage.user_id);
+
+        axios.post(address + 'v1/Api/update_password', update_password, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    'Authorization': localStorage.oauth_token
+                }
+            })
+            .then(function(response) {
+                if (response.data.status == "Success") {
+                    Swal.fire({
+                        type: "success",
+                        text: "Update Successfully !",
+                        confirmButtonText: 'OK'
+                    }).then((result) => {
+                        localStorage.route = "edit_profile.html";
+                        $("#content").html("");
+                        $("#content").load("edit_profile.html");
+                        location.reload();
+                    })
+                } else {
+                    warning_response(response.data.message);
+                }
+            })
+            .catch(function(data) {
+                console.log(data);
+                error_response();
+            });
+    });
+
+    $('#change_security_code_form').submit(function(e) {
+        e.preventDefault();
+
+        var update_security_code = new FormData(this);
+        update_security_code.set('api_key', api_key);
+        update_security_code.set('access_token', localStorage.access_token);
+        update_security_code.set('user_id', localStorage.user_id);
+
+        axios.post(address + 'v1/Api/update_security_code', update_security_code, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    'Authorization': localStorage.oauth_token
+                }
+            })
+            .then(function(response) {
+                if (response.data.status == "Success") {
+                    Swal.fire({
+                        type: "success",
+                        text: "Update Successfully !",
+                        confirmButtonText: 'OK'
+                    }).then((result) => {
+                        localStorage.route = "edit_profile.html";
+                        $("#content").html("");
+                        $("#content").load("edit_profile.html");
+                        location.reload();
+                    })
+                } else {
+                    warning_response(response.data.message);
+                }
+            })
+            .catch(function(data) {
+                console.log(data);
+                error_response();
+            });
+    });
+
+    function get_address() {
+        var get_address = new FormData();
+        get_address.set('api_key', api_key);
+        get_address.set('access_token', localStorage.access_token);
+        get_address.set('user_id', localStorage.user_id);
+
+        axios.post(address + 'v1/Api/get_address', get_address, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    'Authorization': localStorage.oauth_token
+                }
+            })
+            .then(function(response) {
+                if (response.data.status == "Success") {
+                    display_address(response.data.data);
+                } else {
+                    warning_response(response.data.message);
+                }
+            })
+            .catch(function(data) {
+                console.log(data);
+                error_response();
+            });
+    }
+
+    function display_address(json_response) {
+        $("#address_list").html("");
+        var address_list = "";
+        $.each(json_response, function(i, data) {
+            address_list += '<div class="row"> <div class="col-9">';
+            address_list += '<h6><b>' + data.name + '</b></h6>';
+            address_list += '<p class="font-size13">' + data.address + ', ' + data.city + ', ' + data.postcode + ', ' + data.state + '</p>';
+            address_list += '</div><div class="col-3"><button type="button" class="btn btn-danger me-1" onclick="delete_address(' + data.id + ')"><i class="fas fa-trash-alt"></i></button>';
+            address_list += '<button type="button" class="btn btn-warning" onclick="edit_address(' + data.id + ')"><i class="fas fa-edit"></i></button>';
+            address_list += '</div></div>';
+            address_list += '<br>';
+            address_list += '<hr>';
+        });
+        $("#address_list").append(address_list);
+    }
+
+    $('#address_form').submit(function(e) {
+        e.preventDefault();
+
+        var add_address = new FormData(this);
+        add_address.set('api_key', api_key);
+        add_address.set('access_token', localStorage.access_token);
+        add_address.set('user_id', localStorage.user_id);
+
+        axios.post(address + 'v1/Api/insert_address', add_address, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    'Authorization': localStorage.oauth_token
+                }
+            })
+            .then(function(response) {
+                if (response.data.status == "Success") {
+                    Swal.fire({
+                        type: "success",
+                        text: "Add Successfully !",
+                        confirmButtonText: 'OK'
+                    }).then((result) => {
+                        localStorage.route = "edit_profile.html";
+                        $("#content").html("");
+                        $("#content").load("edit_profile.html");
+                        location.reload();
+                    })
+                } else {
+                    warning_response(response.data.message);
+                }
+            })
+            .catch(function(data) {
+                console.log(data);
+                error_response();
+            });
+    });
+
+    $('#edit_address_form').submit(function(e) {
+        e.preventDefault();
+
+        var edit_address = new FormData(this);
+        edit_address.set('api_key', api_key);
+        edit_address.set('access_token', localStorage.access_token);
+        edit_address.set('user_id', localStorage.user_id);
+
+        axios.post(address + 'v1/Api/update_user_address', edit_address, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    'Authorization': localStorage.oauth_token
+                }
+            })
+            .then(function(response) {
+                if (response.data.status == "Success") {
+                    Swal.fire({
+                        type: "success",
+                        text: "Update Successfully !",
+                        confirmButtonText: 'OK'
+                    }).then((result) => {
+                        localStorage.route = "edit_profile.html";
+                        $("#content").html("");
+                        $("#content").load("edit_profile.html");
+                        location.reload();
+                    })
+                } else {
+                    warning_response(response.data.message);
+                }
+            })
+            .catch(function(data) {
+                console.log(data);
+                error_response();
+            });
+    });
+
+    function delete_address(address_id) {
+        Swal.fire({
+            text: "Are you sure you want to delete ?",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes'
+        }).then((result) => {
+            if (result.value) {
+                var delete_user_address = new FormData();
+                delete_user_address.set('api_key', api_key);
+                delete_user_address.set('access_token', localStorage.access_token);
+                delete_user_address.set('user_id', localStorage.user_id);
+                delete_user_address.set('address_id', address_id);
+
+                axios.post(address + 'v1/Api/delete_user_address', delete_user_address, {
+                        headers: {
+                            'Content-Type': 'multipart/form-data',
+                            'Authorization': localStorage.oauth_token
+                        }
+                    })
+                    .then(function(response) {
+                        if (response.data.status == "Success") {
+                            Swal.fire({
+                                type: "success",
+                                text: "Delete Successfully !",
+                                confirmButtonText: 'OK'
+                            }).then((result) => {
+                                localStorage.route = "edit_profile.html";
+                                $("#content").html("");
+                                $("#content").load("edit_profile.html");
+                                location.reload();
+                            })
+                        } else {
+                            warning_response(response.data.message);
+                        }
+                    })
+                    .catch(function(data) {
+                        console.log(data);
+                        error_response();
+                    });
+            }
+        })
+    }
 </script>

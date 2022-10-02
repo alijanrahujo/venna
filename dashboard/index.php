@@ -247,8 +247,6 @@ include("head.php");
       include("foot.php");
       ?>
 <script>
-  check_user_status();
-
 (async () => {
   var user = await get_member_info();
   console.log(user.data.data);
@@ -262,5 +260,6 @@ include("head.php");
   $(".voucher").html(user.data.data.total_voucher);
 
 })()
+
 
 </script>
