@@ -145,7 +145,7 @@ async function get_member_info() {
 
 
 
-(async () => {
-    var user = await get_member_info();
-    console.log(user.data);
-})()
+// (async () => {
+//     var user = await get_member_info();
+//     console.log(user.data);
+// })()

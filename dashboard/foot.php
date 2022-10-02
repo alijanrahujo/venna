@@ -124,7 +124,7 @@
 </html>
 
 <script>
-//  check_user_status();
+check_user_status();
 
 // (async () => {
 //   var user = await get_member_info();
