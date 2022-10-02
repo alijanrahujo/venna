@@ -145,12 +145,12 @@ include("head.php");
                       </div>
                   
 
-                  <input type="button" onclick="update_profile()" value="Submit" class="btn btn-pill text-white btn-block btn-primary">
+                  <input type="button" onclick="update_profile()" value="Submit" class="btn btn-pill text-white btn-block w-100 btn-primary">
 
                  
                 </form>
               </div>
-</div>
+              </div>
             </div>
           </div>
         </div>
@@ -165,7 +165,7 @@ include("head.php");
             <div class="form-block">
                 <div id="address_list"></div>
 
-                  <form method="post" id="address_form">
+                  <!-- <form method="post" id="address_form">
                     <div class="form-group">
                     <label for="name" class="float-left">Name</label>
                     <input type="text" name="name" class="form-control" id="name" placeholder="e.g. home">
@@ -194,15 +194,15 @@ include("head.php");
                   <input type="submit" value="Submit" class="btn btn-pill text-white btn-block btn-primary">
 
                  
-                </form>
+                </form> -->
 
-                <div class="form-group">
+                <div class="d-grid gap-2">
                     <button type="buttion" class="btn btn-success" onclick="oppen_add_address()">Add Address</button>
                 </div>
 
-              </div>
-</div>
                 </div>
+              </div>
+            </div>
           </div>
         </div>
         <div class="container-fluid py-4">
@@ -240,7 +240,7 @@ include("head.php");
                       </div>
                   
 
-                  <input type="submit" value="Submit" class="btn btn-pill text-white btn-block btn-primary">
+                  <input type="submit" value="Submit" class="btn btn-pill text-white w-100 btn-primary">
 
                  
                 </form>
@@ -296,7 +296,7 @@ include("head.php");
                         <input type="number" name="account_no" class="form-control" id="account_no">
                         </div>
                   </div>
-                  <input type="button" value="Submit" onclick="update_profile()" class="btn btn-pill text-white btn-block btn-primary">
+                  <input type="button" value="Submit" onclick="update_profile()" class="btn btn-pill text-white w-100 btn-primary">
               
                  
                 </form>
@@ -310,6 +310,84 @@ include("head.php");
       include("foot.php");
       ?>
 
+    <!-- new address modal -->
+    <div class="modal fade" id="addressModal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Add Address</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                </div>
+                <div class="modal-body">
+                    <form method="POST" id="address_form">
+                        <div class="mb-3 voucher-input">
+                            <label for="input" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="e.g. Home">
+                        </div>
+                        <div class="mb-3 voucher-input">
+                            <label for="input" class="form-label">Address</label>
+                            <input type="text" class="form-control" id="address" name="address">
+                        </div>
+                        <div class="mb-3 voucher-input">
+                            <label for="input" class="form-label">City</label>
+                            <input type="text" class="form-control" id="city" name="city">
+                        </div>
+                        <div class="mb-3 voucher-input">
+                            <label for="input" class="form-label">Postcode</label>
+                            <input type="number" class="form-control" id="postcode" name="postcode">
+                        </div>
+                        <div class="mb-3 voucher-input">
+                            <label for="input" class="form-label">State</label>
+                            <input type="text" class="form-control" id="state" name="state">
+                        </div>
+
+                        <button type="submit" class="btn btn-success w-100">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="editAddressModal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Edit Address</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" id="edit_address_form">
+                        <div class="mb-3 voucher-input">
+                            <label for="input" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="edit_address_name" name="name" placeholder="e.g. Home">
+                        </div>
+                        <div class="mb-3 voucher-input">
+                            <label for="input" class="form-label">Address</label>
+                            <input type="text" class="form-control" id="edit_address" name="address">
+                        </div>
+                        <div class="mb-3 voucher-input">
+                            <label for="input" class="form-label">City</label>
+                            <input type="text" class="form-control" id="edit_city" name="city">
+                        </div>
+                        <div class="mb-3 voucher-input">
+                            <label for="input" class="form-label">Postcode</label>
+                            <input type="number" class="form-control" id="edit_postcode" name="postcode">
+                        </div>
+                        <div class="mb-3 voucher-input">
+                            <label for="input" class="form-label">State</label>
+                            <input type="text" class="form-control" id="edit_state" name="state">
+                        </div>
+
+                        <button type="submit" class="btn btn-success w-100">Submit</button>
+                        <input type="hidden" id="edit_address_id" name="address_id">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
 <script>
 // function update_profile() {
 //         $("#edit_fullname").val($("#user_fullname").val());
@@ -320,54 +398,54 @@ include("head.php");
 //         $('#security_pin').modal('show');
 //     }
 
-    // function oppen_add_address() {
-    //     $('#addressModal').modal('show');
-    // }
+    function oppen_add_address() {
+        $('#addressModal').modal('show');
+    }
 
     // function close_input_pin_key() {
     //     $('#security_pin').modal('hide')
     // }
 
-    // function close_add_address() {
-    //     $('#addressModal').modal('hide')
-    // }
+    function close_add_address() {
+        $('#addressModal').modal('hide')
+    }
 
-    // function edit_address(address_id) {
-    //     var update_password = new FormData();
-    //     update_password.set('api_key', api_key);
-    //     update_password.set('access_token', localStorage.access_token);
-    //     update_password.set('user_id', localStorage.user_id);
-    //     update_password.set('address_id', address_id);
+    function edit_address(address_id) {
+        var update_password = new FormData();
+        update_password.set('api_key', api_key);
+        update_password.set('access_token', localStorage.access_token);
+        update_password.set('user_id', localStorage.user_id);
+        update_password.set('address_id', address_id);
 
-    //     axios.post(address + 'v1/Api/get_user_address_info', update_password, {
-    //             headers: {
-    //                 'Content-Type': 'multipart/form-data',
-    //                 'Authorization': localStorage.oauth_token
-    //             }
-    //         })
-    //         .then(function(response) {
-    //             if (response.data.status == "Success") {
-    //                 $("#edit_address_name").val(response.data.data.name);
-    //                 $("#edit_address").val(response.data.data.address);
-    //                 $("#edit_city").val(response.data.data.city);
-    //                 $("#edit_state").val(response.data.data.state);
-    //                 $("#edit_postcode").val(response.data.data.postcode);
-    //                 $("#edit_address_id").val(response.data.data.id);
-    //                 $('#editAddressModal').modal('show');
-    //             } else {
-    //                 warning_response(response.data.message);
-    //             }
-    //         })
-    //         .catch(function(data) {
-    //             console.log(data);
-    //             error_response();
-    //         });
+        axios.post(address + 'v1/Api/get_user_address_info', update_password, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    'Authorization': localStorage.oauth_token
+                }
+            })
+            .then(function(response) {
+                if (response.data.status == "Success") {
+                    $("#edit_address_name").val(response.data.data.name);
+                    $("#edit_address").val(response.data.data.address);
+                    $("#edit_city").val(response.data.data.city);
+                    $("#edit_state").val(response.data.data.state);
+                    $("#edit_postcode").val(response.data.data.postcode);
+                    $("#edit_address_id").val(response.data.data.id);
+                    $('#editAddressModal').modal('show');
+                } else {
+                    warning_response(response.data.message);
+                }
+            })
+            .catch(function(data) {
+                console.log(data);
+                error_response();
+            });
 
-    // }
+    }
 
-    // function close_edit_address() {
-    //     $('#edit_address').modal('hide')
-    // }
+    function close_edit_address() {
+        $('#edit_address').modal('hide')
+    }
 
     // function open_change_password() {
     //     $('#change_password').modal('show')
@@ -585,15 +663,14 @@ include("head.php");
                 }
             })
             .then(function(response) {
+
+                console.log(response);
                 if (response.data.status == "Success") {
                     Swal.fire({
                         type: "success",
                         text: "Add Successfully !",
                         confirmButtonText: 'OK'
                     }).then((result) => {
-                        localStorage.route = "edit_profile.html";
-                        $("#content").html("");
-                        $("#content").load("edit_profile.html");
                         location.reload();
                     })
                 } else {
@@ -627,9 +704,6 @@ include("head.php");
                         text: "Update Successfully !",
                         confirmButtonText: 'OK'
                     }).then((result) => {
-                        localStorage.route = "edit_profile.html";
-                        $("#content").html("");
-                        $("#content").load("edit_profile.html");
                         location.reload();
                     })
                 } else {
@@ -671,9 +745,6 @@ include("head.php");
                                 text: "Delete Successfully !",
                                 confirmButtonText: 'OK'
                             }).then((result) => {
-                                localStorage.route = "edit_profile.html";
-                                $("#content").html("");
-                                $("#content").load("edit_profile.html");
                                 location.reload();
                             })
                         } else {
