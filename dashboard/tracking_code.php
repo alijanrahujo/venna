@@ -9,9 +9,9 @@ include("head.php");
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
             <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Pages</a></li>
-            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Payment Reference</li>
+            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Tracking Code</li>
           </ol>
-          <h6 class="font-weight-bolder mb-0">Payment Reference</h6>
+          <h6 class="font-weight-bolder mb-0">Tracking Code</h6>
         </nav>
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -113,7 +113,7 @@ include("head.php");
     <!-- End Navbar -->
     <div class="container-fluid py-4">
       
-      <h3>Payment Reference</h3>
+      <h3>Tracking Code</h3>
       <div class="row my-4">
         <div class="col-lg-12 col-md-12 mb-md-0 mb-4">
           <div class="card">
