@@ -94,7 +94,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link  " href=#>
+          <a class="nav-link <?php echo ($page =='payment_reference')?'active':'' ?>" href="payment_reference.php">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 43 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>credit-card</title>
@@ -114,7 +114,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link  " href=#>
+          <a class="nav-link <?php echo ($page =='change_password')?'active':'' ?>" href="change_password.php">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>box-3d-50</title>
@@ -135,7 +135,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link  " href=#>
+          <a class="nav-link  <?php echo ($page =='tracking_code')?'active':'' ?>" href="tracking_code.php">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>settings</title>
@@ -159,7 +159,7 @@
           <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Account pages</h6>
         </li>
         <li class="nav-item">
-          <a class="nav-link  " href=#>
+          <a class="nav-link  <?php echo ($page =='transition_history')?'active':'' ?>" href="transition_history.php">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 46 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>customer-support</title>
@@ -203,7 +203,7 @@
         </li>
         
         <li class="nav-item">
-          <a class="nav-link  " href=#>
+          <a class="nav-link  <?php echo ($page =='retail_sharing')?'active':'' ?>" href="retail_sharing.php">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 46 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>customer-support</title>
@@ -225,7 +225,7 @@
         </li>
         
         <li class="nav-item">
-          <a class="nav-link  " href=#>
+          <a class="nav-link  <?php echo ($page =='self_order')?'active':'' ?>" href="self_order.php">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 46 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>customer-support</title>
@@ -247,7 +247,7 @@
         </li>
         
         <li class="nav-item">
-          <a class="nav-link  " href=#>
+          <a class="nav-link  <?php echo ($page =='order_tracking')?'active':'' ?>" href="order_tracking.php">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 46 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>customer-support</title>
@@ -269,7 +269,7 @@
         </li>
         
         <li class="nav-item">
-          <a class="nav-link  " href=#>
+          <a class="nav-link  <?php echo ($page =='customer_service')?'active':'' ?>" href="customer_service.php">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 46 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>customer-support</title>
@@ -291,7 +291,7 @@
         </li>
         
         <li class="nav-item">
-          <a class="nav-link  " href=#>
+          <a class="nav-link  <?php echo ($page =='new_activity')?'active':'' ?>" href="new_activity.php">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 46 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>customer-support</title>
@@ -313,7 +313,7 @@
         </li>
         
         <li class="nav-item">
-          <a class="nav-link  " href=#>
+          <a class="nav-link  <?php echo ($page =='training')?'active':'' ?>" href="training.php">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 46 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>customer-support</title>
@@ -335,7 +335,7 @@
         </li>
         
         <li class="nav-item">
-          <a class="nav-link  " href=#>
+          <a class="nav-link  <?php echo ($page =='other')?'active':'' ?>" href="other.php">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 46 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>customer-support</title>
