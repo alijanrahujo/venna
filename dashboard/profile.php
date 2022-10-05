@@ -127,12 +127,12 @@ include("head.php");
                   <form method="post">
                     <div class="form-group">
                     <label for="password" class="float-left">Email</label>
-                    <input type="email" name="email" class="form-control" id="user_email">
+                    <div class="form-group" id="user_email"></div>
                     </div>
                   <div class="row">
                     <div class="form-group">
                     <label for="username" class="float-left">Username</label>
-                    <input type="text" name="username" class="form-control" id="user_username">
+                    <div class="form-group" id="user_username"></div>
                     </div>
                     <div class="form-group">
                       <label for="fullname">Full Name</label>
@@ -480,8 +480,8 @@ include("head.php");
                 if (response.data.status == "Success") {
                     $("#package").html(response.data.data.package);
                     $("#username").html(response.data.data.username);
-                    $("#user_email").val(response.data.data.email);
-                    $("#user_username").val(response.data.data.username);
+                    $("#user_email").html(response.data.data.email);
+                    $("#user_username").html(response.data.data.username);
                     $("#user_fullname").val(response.data.data.fullname);
                     $("#user_phone_no").val(response.data.data.phone_no);
                     $('#bank_name option[value="' + response.data.data.bank_name + '"]').prop('selected', true);

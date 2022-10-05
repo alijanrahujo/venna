@@ -120,84 +120,77 @@ include("head.php");
             <div class="flex p-2">
         <div class="table-responsive">
   <table class="table">
-  <tr>
-      <th>Level</th>
-      <th>Qty Order`</th>
-      <th>MM point</th>
-
-  </tr>  
-  <tr>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-
-    </tr>
+  <thead>
     <tr>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
+        <th>Level</th>
+        <th>Qty Order`</th>
+        <th>MM point</th>
+
     </tr>
+  </thead>
+  <tbody id="restock_package_list">
+
+  </tbody>
   </table>
   <br>
 
 </div>
-
+<form method="post" id="restock_form">
                 <div class="form-block">
-                  <form method="post">
+                  
                     <div class="form-group">
                     <label for="text" class="float-left">Order Quantity</label>
-                    <input type="text" name="name" class="form-control" id="email" placeholder="e.g. home">
+                    <!-- <select name="quantity" id="restock_quantity" class="form-select" aria-label="Default select example" onchange="get_restock_grand_total(this)">
+                    </select> -->
+                    <input name="quantity" id="restock_quantity" pattern="[0-9]*" type="number" class="form-control" oninput="get_restock_grand_total(this)">
                     </div>
                   
-                </form>
                 <br>
               </div>
+                <div class="table-responsive" id="repeat_order_box" style="display: none;">
+                  <table class="table">
+                  <tr>
+                      <th>Level</th>
+                      <th>Qty Order`</th>
+                      <th>MM point</th>
 
-        <div class="table-responsive">
-  <table class="table">
-  <tr>
-      <th>Level</th>
-      <th>Qty Order`</th>
-      <th>MM point</th>
+                  </tr>  
+                  <tr>
+                      <td><b id="package_name"></b></td>
+                      <td><span id="package_quantity"></span></td>
+                      <td><span id="package_price"></span></td>
 
-  </tr>  
-  <tr>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-
-    </tr>
-    <tr>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-  </table>
-  <br>
-</div>
+                    </tr>
+                    <tr>
+                      <td><b>Total</b></td>
+                      <td></td>
+                      <td><b id="package_subtotal">0</b></td>
+                    </tr>
+                  </table>
+                  <br>
+                </div>
 
                 <div class="form-block">
-                  <form method="post">
+                  
                     <div class="form-group">
                     <label for="text" class="float-left">Security code</label>
-                    <input type="text" name="name" class="form-control" id="email" placeholder="e.g. home">
+                    <input type="text" name="second_password" class="form-control" id="email" placeholder="Enter password">
                     </div>
-                    
-
-</div>
-      <input type="submit" value="Place Order" class="btn btn-pill text-white btn-block btn-primary">
-                </form>
+              </div>
+            <input type="submit" value="Place Order" id="btn-disable" class="btn btn-pill text-white btn-block btn-primary">
+                
                 <br>
                 <div class="form-block">
-                  <form method="post">
+                 
                     <div class="form-group">
                     <h5>Payment</h5>
-                    <label for="text" class="float-left">Name:</label><br>
-                    <label for="text" class="float-left">Name:</label><br>
-                    <label for="text" class="float-left">Name:</label><br>
+                    <label for="text" class="float-left">Bank Name：<span id="bank_name"></span></label><br>
+                    <label for="text" class="float-left">Bank Account No：<span id="account_no"></span></label><br>
+                    <label for="text" class="float-left">Bank Account Name：<span id="account_name"></span></label><br>
                     </div>
                     
               </div>
+        </form>
 </div></div></div>
 </div>
           </div>
@@ -206,3 +199,170 @@ include("head.php");
       <?php
       include("foot.php");
       ?>
+
+<script>
+      var restock_quantity = [];
+
+$(document).ready(function() {
+    get_restock_package();
+    get_company_info();
+});
+
+function get_restock_package() {
+    var get_restock_package = new FormData();
+    get_restock_package.set('api_key', api_key);
+    get_restock_package.set('access_token', localStorage.access_token);
+    get_restock_package.set('user_id', localStorage.user_id);
+
+    axios.post(address + 'v1/Api/get_restock_package', get_restock_package, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+                'Authorization': localStorage.oauth_token
+            }
+        })
+        .then(function(response) {
+            if (response.data.status == "Success") {
+                display_restock_package(response.data.data);
+                restock_quantity = response.data.data;
+                if (restock_quantity == "") {
+                    $("#restock_quantity").prop("disabled", true);
+                    $('#restock_quantity').empty().append($('<option value="1">').text("No Quantity Found"));
+                } else {
+                    $("#restock_quantity").prop("disabled", false);
+                    $('#restock_quantity').empty().append($('<option value="1">').text("Select Quantity"));
+                    for (var i = 0; i < restock_quantity.length; i++) {
+                        var str = restock_quantity[i].display_quantity;
+                        if (str.search("<br>") == 3 || str.search("<br>") == 4) {
+                            var quantity = str.replace("<br>", " ");
+                        } else {
+                            var quantity = restock_quantity[i].display_quantity;
+                        }
+                        $('#restock_quantity').append($('<option value="' + restock_quantity[i].quantity_data + '">').text(quantity));
+                    }
+                }
+            } else {
+                warning_response(response.data.message);
+            }
+        })
+        .catch(function(data) {
+            console.log(data);
+            error_response();
+        });
+}
+
+function get_restock_grand_total(data) {
+    var quantity = $("#restock_quantity").val();
+    if (typeof quantity == "undefined" || quantity == "") {
+        quantity = 1;
+    } else {
+        quantity = data.value;
+    }
+
+    var calculate_restock_package = new FormData();
+    calculate_restock_package.set('api_key', api_key);
+    calculate_restock_package.set('access_token', localStorage.access_token);
+    calculate_restock_package.set('user_id', localStorage.user_id);
+    calculate_restock_package.set('quantity', quantity);
+
+    axios.post(address + 'v1/Api/calculate_restock_package', calculate_restock_package, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+                'Authorization': localStorage.oauth_token
+            }
+        })
+        .then(function(response) {
+            if (response.data.status == "Success") {
+                if (response.data.data.is_available == 1) {
+                    $("#package_name").html(response.data.data.package_name);
+                    $("#package_quantity").html(response.data.data.package_quantity);
+                    $("#package_price").html(response.data.data.package_price);
+                    $("#package_subtotal").html(response.data.data.package_subtotal);
+                    get_company_info(response.data.data.package_id);
+                    $("#repeat_order_box").css("display", "block");
+                } else {
+                    $("#repeat_order_box").css("display", "none");
+                }
+            } else {
+                warning_response(response.data.message);
+            }
+        })
+        .catch(function(data) {
+            console.log(data);
+            error_response();
+        });
+}
+
+function get_company_info(package_id) {
+    var get_company_info = new FormData();
+    get_company_info.set('api_key', api_key);
+    get_company_info.set('access_token', localStorage.access_token);
+    get_company_info.set('user_id', localStorage.user_id);
+    get_company_info.set('package_id', package_id);
+
+    axios.post(address + 'v1/Api/get_company_info', get_company_info, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+                'Authorization': localStorage.oauth_token
+            }
+        })
+        .then(function(response) {
+            if (response.data.status == "Success") {
+                $("#account_name").html(response.data.data.account_name);
+                $("#account_no").html(response.data.data.account_no);
+                $("#bank_name").html(response.data.data.bank_name);
+            } else {
+                warning_response(response.data.message);
+            }
+        })
+        .catch(function(data) {
+            console.log(data);
+            error_response();
+        });
+}
+
+$('#restock_form').submit(function(e) {
+
+    e.preventDefault();
+
+    var insert_restock_package = new FormData(this);
+    insert_restock_package.set('api_key', api_key);
+    insert_restock_package.set('access_token', localStorage.access_token);
+    insert_restock_package.set('user_id', localStorage.user_id);
+
+    axios.post(address + 'v1/Api/insert_restock_package', insert_restock_package, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+                'Authorization': localStorage.oauth_token
+            }
+        })
+        .then(function(response) {
+
+            console.log(response);
+
+            if (response.data.status == "Success") {
+                success_response("Submit Successfully !", true, "order_tracking.php");
+                document.getElementById("btn-disable").disabled = true;
+            } else {
+                warning_response(response.data.message);
+            }
+        })
+        .catch(function(data) {
+            console.log(data);
+            error_response();
+        });
+});
+
+function display_restock_package(json_response) {
+    var tableBody = $("#restock_package_list");
+    tableBody.empty();
+    var restock_package_list = ""
+    $.each(json_response, function(i, data) {
+        restock_package_list += '<tr class="tr_repeat_order">';
+        restock_package_list += '<td class="td-50 main-color"><b>' + data.english_name + '</b></td>';
+        restock_package_list += '<td class="td-25 main-color">' + data.display_quantity + '</td>';
+        restock_package_list += '<td class="td-25 main-color">' + data.unit_price + '</td>';
+        restock_package_list += '</tr>';
+    });
+    tableBody.append(restock_package_list);
+}
+</script>
