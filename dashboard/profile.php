@@ -124,7 +124,7 @@ include("head.php");
             <div class="card-body px-0 pb-2">
             <div class="flex p-2">
             <div class="form-block">
-                  <form method="post">
+                  <form method="post" >
                     <div class="form-group">
                     <label for="password" class="float-left">Email</label>
                     <div class="form-group" id="user_email"></div>
@@ -165,37 +165,6 @@ include("head.php");
             <div class="form-block">
                 <div id="address_list"></div>
 
-                  <!-- <form method="post" id="address_form">
-                    <div class="form-group">
-                    <label for="name" class="float-left">Name</label>
-                    <input type="text" name="name" class="form-control" id="name" placeholder="e.g. home">
-                    </div>
-                  
-                    <div class="form-group">
-                    <label for="address" class="float-left">Address</label>
-                    <input type="text" name="address" class="form-control" id="address">
-                    </div>
-                    <div class="row">
-                    <div class="form-group col-md-9">
-                    <label for="city">City</label>
-                    <input type="text" name="city" class="form-control" id="city">
-                    </div>
-                    <div class="form-group col-md-3">
-                      <label for="postcode">Postal code*</label>
-                      <input type="number" name="postcode" class="form-control " id="postcode">
-                      </div>
-                    </div>
-                      <div class="form-group">
-                      <label for="state">State</label>
-                      <input type="text" name="state" class="form-control col-md-4" id="state">
-                      </div>
-                  
-
-                  <input type="submit" value="Submit" class="btn btn-pill text-white btn-block btn-primary">
-
-                 
-                </form> -->
-
                 <div class="d-grid gap-2">
                     <button type="buttion" class="btn btn-success" onclick="oppen_add_address()">Add Address</button>
                 </div>
@@ -216,36 +185,14 @@ include("head.php");
             <div class="card-body px-0 pb-2">
             <div class="flex p-2">
             <div class="form-block">
-                  <form method="post">
-                    <div class="form-group">
-                    <label for="new_security_code" class="float-left">New Security Code</label>
-                    <input type="password" name="new_security_code" class="form-control" id="new_pincode">
-                    </div>
-                  
-                    <div class="form-group">
-                    <label for="confirm_security_code" class="float-left">Confirm Security code</label>
-                    <input type="password" name="confirm_security_code" class="form-control" id="confirm_new_pincode">
-                    </div>
-                    <div class="form-group">
-                    <label for="password">Old Password</label>
-                    <input type="password" name="original_password" class="form-control" id="password">
-                    </div>
-                    <div class="form-group">
-                      <label for="new_password">New Password</label>
-                      <input type="password" name="new_password" class="form-control " id="new_password">
-                      </div>
-                      <div class="form-group">
-                      <label for="confirm_password">Confirm Password</label>
-                      <input type="password" name="confirm_password" class="form-control col-md-4" id="confirm_new_password">
-                      </div>
-                  
-
-                  <input type="submit" value="Submit" class="btn btn-pill text-white w-100 btn-primary">
-
-                 
-                </form>
+              <div class="form-group first">
+                <button type="button" class="btn btn-success w-100" onclick="open_change_second_password()">Change Security Code</button>
               </div>
-</div>
+              <div class="form-group first">
+                <button type="button" class="btn btn-success w-100" onclick="open_change_password()">Change Password</button>        
+              </div>
+              </div>
+            </div>
             </div>
           </div>
         </div>
@@ -316,7 +263,7 @@ include("head.php");
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="staticBackdropLabel">Add Address</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close" style="background-color:black" data-bs-dismiss="modal" aria-label="Close"></button>
 
                 </div>
                 <div class="modal-body">
@@ -355,7 +302,7 @@ include("head.php");
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="staticBackdropLabel">Edit Address</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close" style="background-color:black" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form method="POST" id="edit_address_form">
@@ -388,23 +335,102 @@ include("head.php");
         </div>
     </div>
 
+    <div id="security_pin" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Fill in Your Security Code</h5>
+                <button type="button" class="btn-close" style="background-color:black" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+
+                <div class="modal-body">
+                    <form class="left10px" method="POST" id="profile_form">
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Security Code</label>
+                            <input type="password" class="form-control" id="security_code" placeholder="Security Code">
+                        </div>
+
+                        <br>
+                        <button type="submit" class="btn btn-success w-100">Submit</button>
+                        <input type="hidden" name="fullname" id="edit_fullname">
+                        <input type="hidden" name="phone_no" id="edit_phone_no">
+                        <input type="hidden" name="bank_name" id="edit_bank_name">
+                        <input type="hidden" name="account_name" id="edit_account_name">
+                        <input type="hidden" name="account_no" id="edit_account_no">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="change_password">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Change Password</h5>
+                    <button type="button" class="btn-close" style="background-color:black" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" id="change_password_form">
+                        <div class="mb-3 voucher-input">
+                            <label for="input" class="form-label">Old Password</label>
+                            <input type="password" class="form-control" id="password" name="original_password">
+                        </div>
+                        <div class="mb-3 voucher-input">
+                            <label for="input" class="form-label">New Password</label>
+                            <input type="password" class="form-control" id="new_password" name="new_password">
+                        </div>
+                        <div class="mb-3 voucher-input">
+                            <label for="input" class="form-label">New Password</label>
+                            <input type="password" class="form-control" id="confirm_new_password" name="confirm_password">
+                        </div>
+                        <button type="submit" class="btn btn-success w-100">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="change_second_password">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Change Security Code</h5>
+                    <button type="button" class="btn-close" style="background-color:black" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" id="change_security_code_form">
+
+                        <div class="mb-3 voucher-input">
+                            <label for="input" class="form-label">New Security Code</label>
+                            <input type="password" class="form-control" id="new_pincode" name="new_security_code">
+                        </div>
+                        <div class="mb-3 voucher-input">
+                            <label for="input" class="form-label">Confirm Security Code</label>
+                            <input type="password" class="form-control" id="confirm_new_pincode" name="confirm_security_code">
+                        </div>
+                        <button type="submit" class="btn btn-success w-100">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
 <script>
-// function update_profile() {
-//         $("#edit_fullname").val($("#user_fullname").val());
-//         $("#edit_phone_no").val($("#user_phone_no").val());
-//         $("#edit_bank_name").val($("#bank_name").val());
-//         $("#edit_account_name").val($("#account_name").val());
-//         $("#edit_account_no").val($("#account_no").val());
-//         $('#security_pin').modal('show');
-//     }
+function update_profile() {
+        $("#edit_fullname").val($("#user_fullname").val());
+        $("#edit_phone_no").val($("#user_phone_no").val());
+        $("#edit_bank_name").val($("#bank_name").val());
+        $("#edit_account_name").val($("#account_name").val());
+        $("#edit_account_no").val($("#account_no").val());
+        $('#security_pin').modal('show');
+    }
 
     function oppen_add_address() {
         $('#addressModal').modal('show');
     }
-
-    // function close_input_pin_key() {
-    //     $('#security_pin').modal('hide')
-    // }
 
     function close_add_address() {
         $('#addressModal').modal('hide')
@@ -447,17 +473,17 @@ include("head.php");
         $('#edit_address').modal('hide')
     }
 
-    // function open_change_password() {
-    //     $('#change_password').modal('show')
-    // }
+    function open_change_password() {
+        $('#change_password').modal('show')
+    }
 
-    // function open_change_second_password() {
-    //     $('#change_second_password').modal('show')
-    // }
+    function open_change_second_password() {
+        $('#change_second_password').modal('show')
+    }
 
-    // function go_logout() {
-    //     window.location.href = "login.html";
-    // }
+    function go_logout() {
+        window.location.href = "login.html";
+    }
 
     $(document).ready(function() {
         get_member_info();
@@ -520,9 +546,6 @@ include("head.php");
                         text: "Update Successfully !",
                         confirmButtonText: 'OK'
                     }).then((result) => {
-                        localStorage.route = "edit_profile.html";
-                        $("#content").html("");
-                        $("#content").load("edit_profile.html");
                         location.reload();
                     })
                 } else {
@@ -539,6 +562,7 @@ include("head.php");
         e.preventDefault();
 
         var update_password = new FormData(this);
+
         update_password.set('api_key', api_key);
         update_password.set('access_token', localStorage.access_token);
         update_password.set('user_id', localStorage.user_id);
@@ -556,10 +580,7 @@ include("head.php");
                         text: "Update Successfully !",
                         confirmButtonText: 'OK'
                     }).then((result) => {
-                        localStorage.route = "edit_profile.html";
-                        $("#content").html("");
-                        $("#content").load("edit_profile.html");
-                        location.reload();
+                        window.location = 'login.html';
                     })
                 } else {
                     warning_response(response.data.message);
@@ -592,9 +613,6 @@ include("head.php");
                         text: "Update Successfully !",
                         confirmButtonText: 'OK'
                     }).then((result) => {
-                        localStorage.route = "edit_profile.html";
-                        $("#content").html("");
-                        $("#content").load("edit_profile.html");
                         location.reload();
                     })
                 } else {
