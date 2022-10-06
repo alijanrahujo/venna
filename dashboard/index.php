@@ -108,6 +108,12 @@ include("head.php");
             </li>
           </ul>
         </div>
+        <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+            <div class="input-group">
+              <span class="mt-3 px-3"> Welcome <span id="h-name">Ali Jan</span></span>
+              <a href="../login.html" class="btn btn-light btn-sn py-2 mt-2">Log Out</a>
+            </div>
+          </div>
       </div>
     </nav>
     <!-- End Navbar -->

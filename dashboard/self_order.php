@@ -104,10 +104,14 @@ include("head.php");
                     </div>
                   </a>
                 </li>
-              </ul>
-            </li>
-          </ul>
+                </ul>
         </div>
+        <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+            <div class="input-group">
+              <span class="mt-3 px-3"> Welcome <span id="h-name">Ali Jan</span></span>
+              <a href="../login.html" class="btn btn-light btn-sn py-2 mt-2">Log Out</a>
+            </div>
+          </div>
       </div>
     </nav>
     <!-- End Navbar -->
@@ -117,18 +121,19 @@ include("head.php");
       <div class="row my-4">
         <div class="col-lg-12 col-md-12 mb-md-0 mb-4">
           <div class="card">
-            <div class="card-header pb-0">
-            <h5><center>Coming Soon</center></h5>
-                
-            </div>
-            <div class="card-body px-0 pb-2">
-            <div class="flex p-2">
-           
-              </div>
-</div>
+            <div class="col-lg-12 col-md-12 mb-md-0 mb-4">  
+              <div class="card-header pb-0">
+                <div class="card-body">
+                  <div class="card p-3 mb-2 bg-dark text-white md-3">
+                  Hello
+                  </div>
+                </div>
+              </div>           
+             </div>
             </div>
           </div>
         </div>
+      </div>
         
       <?php
       include("foot.php");
