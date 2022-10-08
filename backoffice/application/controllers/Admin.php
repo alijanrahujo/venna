@@ -22,6 +22,7 @@ class Admin extends Base_Controller {
     }
     
     public function reply(){
+        //reply
         $id = $this->encryption->decrypt(str_replace(array('-', '_', '~'), array('+', '/', '='), $this->uri->segment(3)));
         $edit_info = $this->Api_Model->get_rows_info(TBL_TICKET, "*", array('active' => 1, 'id' => $id));
         // $gallery_attachment = $this->Api_Model->get_rows(TBL_GALLERY_ATTACHMENT, "*", array('active' => 1, 'gallery_id' => $id), "", "", "sequence", "ASC");
