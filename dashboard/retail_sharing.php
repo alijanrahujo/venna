@@ -122,8 +122,112 @@ include("head.php");
         <div class="col-lg-12 col-md-12 mb-md-0 mb-4">
           <div class="card">
             <div class="card-header pb-0">
-            <h5><center>Coming Soon</center></h5>
-                
+            
+            
+            <div class=" container home-container page-contain">
+    
+    <hr class="basic-hr">
+    <div class="tab-content mt-3">
+        <div class="tab-pane fade show active" id="register" role="tabpanel" aria-labelledby="register-tab">
+            <br>
+            <h4 class="main-color">Register Business Partner</h4>
+            <p class="main-color">Your Referral Link:</p>
+            <input type="text" class="form-control referral-input" id="register_invitation_link" readonly>
+            <div class="row">
+                <div class="col-12">
+                    <br>
+                    <button style="margin:10px" type="button" class="btn btn-primary" onclick="copyLink(1)">Copy link</button>
+                </div>
+                <!-- <div class="col-3">
+                                <br>
+                                <button type="button" class="btn main-btn"><i class="fas fa-share-alt"></i></button>
+                            </div> -->
+            </div>
+            
+        </div>
+    </div>
+
+
+
+
+    <div class="card zm-card" id="voucher_box" style="display: none;margin-top: 10px;">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-10 zm-title"><b>招募金卷</b></div>
+                <div class="col-2">
+                    <button type="button" class=" btn main-btn btn-circle btn-sm" onclick="open_add_voucher_modal()">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+            <div id="voucher_list"></div>
+        </div>
+    </div>
+    <!--share url modal
+    <div class="modal fade" id="shareModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <input type="text" class="form-control referral-input" id="referral_url" readonly>
+                    <br>
+                    <table>
+                        <tr aria-colspan="3">Share To :</tr>
+                        <tr>
+                            <td style="width: 33%;"><button type="button" class="btn share-icon" onclick="show_coming_soon()"><i class="fab fa-facebook-square"></i></i></button></td>
+                            <td style="width: 33%;">
+                                <a class="btn share-icon" id="whatsapp_share" data-action="share/whatsapp/share"><i class="fab fa-whatsapp-square"></i></a>
+                            </td>
+                            <td style="width: 33%;"><button type="button" class="btn share-icon" onclick="setClipboard()"><i class="fas fa-copy"></i></button></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button onclick="closeshare2()" type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>-->
+
+    <!--add voucher modal-->
+    <div class="modal fade" id="voucherModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="modal-header">
+                        <table>
+                            <tr>
+                                <td style="width: 90%;"><b>Create Voucher</b></td>
+                                <td style="width: 10%;">
+                                    <button class="btn" style="color: lightslategray;" onclick="close_add_voucher_modal()">
+                                            <i class="fas fa-times"></i>
+                                        </button>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <br>
+                    <form method="POST" id="voucher_form">
+                        <div class="mb-3">
+                            <label for="Select" class="form-label">Select Package</label>
+                            <select id="package_id" name="package_id" class="form-select">
+                                    
+                                </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="Select" class="form-label">Package</label>
+                            <select id="country_id" name="country_id" class="form-select">
+
+                                </select>
+                        </div>
+                        <button type="submit" class="btn main-btn w-100">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
             </div>
             <div class="card-body px-0 pb-2">
             <div class="flex p-2">
@@ -139,80 +243,23 @@ include("head.php");
       ?>
 
 <script>
-// function update_profile() {
-//         $("#edit_fullname").val($("#user_fullname").val());
-//         $("#edit_phone_no").val($("#user_phone_no").val());
-//         $("#edit_bank_name").val($("#bank_name").val());
-//         $("#edit_account_name").val($("#account_name").val());
-//         $("#edit_account_no").val($("#account_no").val());
-//         $('#security_pin').modal('show');
-//     }
-
-    // function oppen_add_address() {
-    //     $('#addressModal').modal('show');
-    // }
-
-    // function close_input_pin_key() {
-    //     $('#security_pin').modal('hide')
-    // }
-
-    // function close_add_address() {
-    //     $('#addressModal').modal('hide')
-    // }
-
-    // function edit_address(address_id) {
-    //     var update_password = new FormData();
-    //     update_password.set('api_key', api_key);
-    //     update_password.set('access_token', localStorage.access_token);
-    //     update_password.set('user_id', localStorage.user_id);
-    //     update_password.set('address_id', address_id);
-
-    //     axios.post(address + 'v1/Api/get_user_address_info', update_password, {
-    //             headers: {
-    //                 'Content-Type': 'multipart/form-data',
-    //                 'Authorization': localStorage.oauth_token
-    //             }
-    //         })
-    //         .then(function(response) {
-    //             if (response.data.status == "Success") {
-    //                 $("#edit_address_name").val(response.data.data.name);
-    //                 $("#edit_address").val(response.data.data.address);
-    //                 $("#edit_city").val(response.data.data.city);
-    //                 $("#edit_state").val(response.data.data.state);
-    //                 $("#edit_postcode").val(response.data.data.postcode);
-    //                 $("#edit_address_id").val(response.data.data.id);
-    //                 $('#editAddressModal').modal('show');
-    //             } else {
-    //                 warning_response(response.data.message);
-    //             }
-    //         })
-    //         .catch(function(data) {
-    //             console.log(data);
-    //             error_response();
-    //         });
-
-    // }
-
-    // function close_edit_address() {
-    //     $('#edit_address').modal('hide')
-    // }
-
-    // function open_change_password() {
-    //     $('#change_password').modal('show')
-    // }
-
-    // function open_change_second_password() {
-    //     $('#change_second_password').modal('show')
-    // }
-
-    // function go_logout() {
-    //     window.location.href = "login.html";
-    // }
-
     $(document).ready(function() {
-        get_member_info();
-        get_address();
+        //get_member_info();
+        $("#register_invitation_link").val(share_url + "register.html?referral=" + localStorage.username);
+        $("#retail_invitation_link").val(share_url + "guest_retail_order.html?referral=" + localStorage.user_id);
+        // $("#whatsapp_share").attr("href", "whatsapp://send?text=" + share_url + "register.html?referral=" + localStorage.username);
+        //check_is_display_voucher();
+        //get_voucher();
     });
+
+    function download_image(url) {
+        const a = document.createElement('a')
+        a.href = url
+        a.download = url.split('/').pop()
+        document.body.appendChild(a)
+        a.click()
+        document.body.removeChild(a)
+    }
 
     function get_member_info() {
         var get_member_info = new FormData();
@@ -228,16 +275,14 @@ include("head.php");
             })
             .then(function(response) {
                 if (response.data.status == "Success") {
-                    $("#package").html(response.data.data.package);
-                    $("#username").html(response.data.data.username);
-                    $("#user_email").val(response.data.data.email);
-                    $("#user_username").val(response.data.data.username);
-                    $("#user_fullname").val(response.data.data.fullname);
-                    $("#user_phone_no").val(response.data.data.phone_no);
-                    $('#bank_name option[value="' + response.data.data.bank_name + '"]').prop('selected', true);
-                    $("#account_name").val(response.data.data.account_name);
-                    $("#account_no").val(response.data.data.account_no);
-                    $("#profile-img").attr("src", response.data.data.profile_image);
+                    if (response.data.data.register_qr != "" && response.data.data.register_qr != null && response.data.data.register_qr != "https://ainra.co/3fscp/img/register_poster/") {
+                        $("#register_qr").attr("src", response.data.data.register_qr);
+                        $("#register_qr_download").attr("href", response.data.data.register_qr);
+                    }
+                    if (response.data.data.retail_qr != "" && response.data.data.retail_qr != null && response.data.data.retail_qr != "https://ainra.co/3fscp/img/retail_poster/") {
+                        $("#retail_qr").attr("src", response.data.data.retail_qr);
+                        $("#retail_qr_download").attr("href", response.data.data.retail_qr);
+                    }
                 } else {
                     warning_response(response.data.message);
                 }
@@ -248,16 +293,34 @@ include("head.php");
             });
     }
 
-    $('#profile_form').submit(function(e) {
-        e.preventDefault();
+    function show_coming_soon() {
+        warning_response("Coming Soon !");
+    }
 
-        var edit_profile = new FormData(this);
-        edit_profile.set('api_key', api_key);
-        edit_profile.set('access_token', localStorage.access_token);
-        edit_profile.set('user_id', localStorage.user_id);
-        edit_profile.set('security_code', $("#security_code").val());
+    function copyLink(type, is_close_modal = 0) {
+        if (type == 1) {
+            var copyText = document.getElementById("register_invitation_link");
+        } else if (type == 2) {
+            var copyText = document.getElementById("retail_invitation_link");
+        } else {
+            var copyText = document.getElementById("referral_url");
+        }
+        copyText.select();
+        document.execCommand("copy");
+        success_response_with_timer("Copied");
+        if (is_close_modal == 1) {
+            $('#shareModal').modal('hide');
+        }
+    }
 
-        axios.post(address + 'v1/Api/update_profile', edit_profile, {
+    function openshare2(voucher_id) {
+        var get_voucher_referral_url = new FormData();
+        get_voucher_referral_url.set('api_key', api_key);
+        get_voucher_referral_url.set('access_token', localStorage.access_token);
+        get_voucher_referral_url.set('user_id', localStorage.user_id);
+        get_voucher_referral_url.set('voucher_id', voucher_id);
+
+        axios.post(address + 'v1/Api/get_voucher_referral_url', get_voucher_referral_url, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                     'Authorization': localStorage.oauth_token
@@ -265,113 +328,9 @@ include("head.php");
             })
             .then(function(response) {
                 if (response.data.status == "Success") {
-                    Swal.fire({
-                        type: "success",
-                        text: "Update Successfully !",
-                        confirmButtonText: 'OK'
-                    }).then((result) => {
-                        localStorage.route = "edit_profile.html";
-                        $("#content").html("");
-                        $("#content").load("edit_profile.html");
-                        location.reload();
-                    })
-                } else {
-                    warning_response(response.data.message);
-                }
-            })
-            .catch(function(data) {
-                console.log(data);
-                error_response();
-            });
-    });
-
-    $('#change_password_form').submit(function(e) {
-        e.preventDefault();
-
-        var update_password = new FormData(this);
-        update_password.set('api_key', api_key);
-        update_password.set('access_token', localStorage.access_token);
-        update_password.set('user_id', localStorage.user_id);
-
-        axios.post(address + 'v1/Api/update_password', update_password, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                    'Authorization': localStorage.oauth_token
-                }
-            })
-            .then(function(response) {
-                if (response.data.status == "Success") {
-                    Swal.fire({
-                        type: "success",
-                        text: "Update Successfully !",
-                        confirmButtonText: 'OK'
-                    }).then((result) => {
-                        localStorage.route = "edit_profile.html";
-                        $("#content").html("");
-                        $("#content").load("edit_profile.html");
-                        location.reload();
-                    })
-                } else {
-                    warning_response(response.data.message);
-                }
-            })
-            .catch(function(data) {
-                console.log(data);
-                error_response();
-            });
-    });
-
-    $('#change_security_code_form').submit(function(e) {
-        e.preventDefault();
-
-        var update_security_code = new FormData(this);
-        update_security_code.set('api_key', api_key);
-        update_security_code.set('access_token', localStorage.access_token);
-        update_security_code.set('user_id', localStorage.user_id);
-
-        axios.post(address + 'v1/Api/update_security_code', update_security_code, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                    'Authorization': localStorage.oauth_token
-                }
-            })
-            .then(function(response) {
-                if (response.data.status == "Success") {
-                    Swal.fire({
-                        type: "success",
-                        text: "Update Successfully !",
-                        confirmButtonText: 'OK'
-                    }).then((result) => {
-                        localStorage.route = "edit_profile.html";
-                        $("#content").html("");
-                        $("#content").load("edit_profile.html");
-                        location.reload();
-                    })
-                } else {
-                    warning_response(response.data.message);
-                }
-            })
-            .catch(function(data) {
-                console.log(data);
-                error_response();
-            });
-    });
-
-    function get_address() {
-        var get_address = new FormData();
-        get_address.set('api_key', api_key);
-        get_address.set('access_token', localStorage.access_token);
-        get_address.set('user_id', localStorage.user_id);
-
-        axios.post(address + 'v1/Api/get_address', get_address, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                    'Authorization': localStorage.oauth_token
-                }
-            })
-            .then(function(response) {
-                if (response.data.status == "Success") {
-                    display_address(response.data.data);
+                    $("#referral_url").val(share_url + "register.html?referral=" + localStorage.username + "&voucher=" + response.data.data.code);
+                    // $('#shareModal').modal('show');
+                    copyLink(3, 0);
                 } else {
                     warning_response(response.data.message);
                 }
@@ -382,137 +341,173 @@ include("head.php");
             });
     }
 
-    function display_address(json_response) {
-        $("#address_list").html("");
-        var address_list = "";
+    function closeshare2() {
+        $('#shareModal').modal('hide');
+
+    }
+
+    function check_is_display_voucher() {
+        var check_is_display_voucher = new FormData();
+        check_is_display_voucher.set('api_key', api_key);
+        check_is_display_voucher.set('access_token', localStorage.access_token);
+        check_is_display_voucher.set('user_id', localStorage.user_id);
+
+        axios.post(address + 'v1/Api/check_is_display_voucher', check_is_display_voucher, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    'Authorization': localStorage.oauth_token
+                }
+            })
+            .then(function(response) {
+                if (response.data.status == "Success") {
+                    if (response.data.data.is_valid == 1) {
+                        $("#voucher_box").show();
+                    } else {
+                        $("#voucher_box").hide();
+                    }
+                } else {
+                    warning_response(response.data.message);
+                }
+            })
+            .catch(function(data) {
+                console.log(data);
+                error_response();
+            });
+    }
+
+    function get_voucher() {
+        var get_voucher_list = new FormData();
+        get_voucher_list.set('api_key', api_key);
+        get_voucher_list.set('access_token', localStorage.access_token);
+        get_voucher_list.set('user_id', localStorage.user_id);
+
+        axios.post(address + 'v1/Api/get_voucher_list', get_voucher_list, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    'Authorization': localStorage.oauth_token
+                }
+            })
+            .then(function(response) {
+                if (response.data.status == "Success") {
+                    display_voucher(response.data.data);
+                } else {
+                    warning_response(response.data.message);
+                }
+            })
+            .catch(function(data) {
+                console.log(data);
+                error_response();
+            });
+    }
+
+    function open_add_voucher_modal() {
+        var get_voucher_package = new FormData();
+        get_voucher_package.set('api_key', api_key);
+        get_voucher_package.set('access_token', localStorage.access_token);
+        get_voucher_package.set('user_id', localStorage.user_id);
+
+        axios.post(address + 'v1/Api/get_voucher_package', get_voucher_package, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    'Authorization': localStorage.oauth_token
+                }
+            })
+            .then(function(response) {
+                if (response.data.status == "Success") {
+                    display_package(response.data.data.package);
+                    display_country(response.data.data.country);
+                    $('#voucherModal').modal('show');
+                } else {
+                    warning_response(response.data.message);
+                }
+            })
+            .catch(function(data) {
+                console.log(data);
+                error_response();
+            });
+    }
+
+    $('#voucher_form').submit(function(e) {
+        e.preventDefault();
+
+        var insert_voucher_package = new FormData(this);
+        insert_voucher_package.set('api_key', api_key);
+        insert_voucher_package.set('access_token', localStorage.access_token);
+        insert_voucher_package.set('user_id', localStorage.user_id);
+
+        axios.post(address + 'v1/Api/insert_voucher_package', insert_voucher_package, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                    'Authorization': localStorage.oauth_token
+                }
+            })
+            .then(function(response) {
+                if (response.data.status == "Success") {
+                    $('#voucherModal').modal('hide');
+                    success_response("Add Successfully !", true, "invite.html");
+                } else {
+                    warning_response(response.data.message);
+                }
+            })
+            .catch(function(data) {
+                console.log(data);
+                error_response();
+            });
+    });
+
+    function display_voucher(json_response) {
+        $("#voucher_list").html("");
+        var voucher_list = "";
         $.each(json_response, function(i, data) {
-            address_list += '<div class="row"> <div class="col-9">';
-            address_list += '<h6><b>' + data.name + '</b></h6>';
-            address_list += '<p class="font-size13">' + data.address + ', ' + data.city + ', ' + data.postcode + ', ' + data.state + '</p>';
-            address_list += '</div><div class="col-3"><button type="button" class="btn btn-danger me-1" onclick="delete_address(' + data.id + ')"><i class="fas fa-trash-alt"></i></button>';
-            address_list += '<button type="button" class="btn btn-warning" onclick="edit_address(' + data.id + ')"><i class="fas fa-edit"></i></button>';
-            address_list += '</div></div>';
-            address_list += '<br>';
-            address_list += '<hr>';
+            if (data.is_claim == 0) {
+                voucher_list += '<div class="card zm-pac-card" onclick="openshare2(' + data.voucher_id + ')">';
+            } else {
+                voucher_list += '<div class="card zm-pac-card">';
+            }
+            voucher_list += '<div class="card-body">';
+            voucher_list += '<input type="text" class="form-control referral-input" id="referral_url" value="' + share_url + "register.html?referral=" + localStorage.username + "&voucher=" + data.voucher_code + '" readonly><br>';
+
+            voucher_list += '<div style="width: 100%; display: flex;">';
+            voucher_list += '<div style="width: 80%;">';
+            voucher_list += '<b>' + data.package_name + '</b><br><span class="zm-voucher">' + data.voucher_code + "</span><br>";
+            if (data.is_claim == 0) {
+                voucher_list += '<span class="zm-status-unclaimed"> Unclaimed</span>';
+            } else {
+                voucher_list += '<span class="zm-status-unclaimed"> Claimed</span>';
+            }
+            voucher_list += '</div>';
+            voucher_list += '<div style="width: 20%;">';
+            voucher_list += '<i class="fas fa-copy" style="font-size: 30px; margin-top: 20px;"></i>';
+            voucher_list += '</div>';
+            voucher_list += '</div>';
+
+            voucher_list += '</div>';
+            voucher_list += '</div>';
         });
-        $("#address_list").append(address_list);
+        $("#voucher_list").append(voucher_list);
     }
 
-    $('#address_form').submit(function(e) {
-        e.preventDefault();
+    function display_package(json_response) {
+        $("#package_id").html("");
+        var package_list = "";
+        package_list += '<option value="0">Select Package</option>';
+        $.each(json_response, function(i, data) {
+            package_list += '<option value="' + data.id + '">' + data.package_name + '</option>';
+        });
+        $("#package_id").append(package_list);
+    }
 
-        var add_address = new FormData(this);
-        add_address.set('api_key', api_key);
-        add_address.set('access_token', localStorage.access_token);
-        add_address.set('user_id', localStorage.user_id);
+    function display_country(json_response) {
+        $("#country_id").html("");
+        var country_list = "";
+        country_list += '<option value="0">Select Country</option>';
+        $.each(json_response, function(i, data) {
+            country_list += '<option value="' + data.id + '">' + data.name + '</option>';
+        });
+        $("#country_id").append(country_list);
+    }
 
-        axios.post(address + 'v1/Api/insert_address', add_address, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                    'Authorization': localStorage.oauth_token
-                }
-            })
-            .then(function(response) {
-                if (response.data.status == "Success") {
-                    Swal.fire({
-                        type: "success",
-                        text: "Add Successfully !",
-                        confirmButtonText: 'OK'
-                    }).then((result) => {
-                        localStorage.route = "edit_profile.html";
-                        $("#content").html("");
-                        $("#content").load("edit_profile.html");
-                        location.reload();
-                    })
-                } else {
-                    warning_response(response.data.message);
-                }
-            })
-            .catch(function(data) {
-                console.log(data);
-                error_response();
-            });
-    });
-
-    $('#edit_address_form').submit(function(e) {
-        e.preventDefault();
-
-        var edit_address = new FormData(this);
-        edit_address.set('api_key', api_key);
-        edit_address.set('access_token', localStorage.access_token);
-        edit_address.set('user_id', localStorage.user_id);
-
-        axios.post(address + 'v1/Api/update_user_address', edit_address, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                    'Authorization': localStorage.oauth_token
-                }
-            })
-            .then(function(response) {
-                if (response.data.status == "Success") {
-                    Swal.fire({
-                        type: "success",
-                        text: "Update Successfully !",
-                        confirmButtonText: 'OK'
-                    }).then((result) => {
-                        localStorage.route = "edit_profile.html";
-                        $("#content").html("");
-                        $("#content").load("edit_profile.html");
-                        location.reload();
-                    })
-                } else {
-                    warning_response(response.data.message);
-                }
-            })
-            .catch(function(data) {
-                console.log(data);
-                error_response();
-            });
-    });
-
-    function delete_address(address_id) {
-        Swal.fire({
-            text: "Are you sure you want to delete ?",
-            type: "warning",
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes'
-        }).then((result) => {
-            if (result.value) {
-                var delete_user_address = new FormData();
-                delete_user_address.set('api_key', api_key);
-                delete_user_address.set('access_token', localStorage.access_token);
-                delete_user_address.set('user_id', localStorage.user_id);
-                delete_user_address.set('address_id', address_id);
-
-                axios.post(address + 'v1/Api/delete_user_address', delete_user_address, {
-                        headers: {
-                            'Content-Type': 'multipart/form-data',
-                            'Authorization': localStorage.oauth_token
-                        }
-                    })
-                    .then(function(response) {
-                        if (response.data.status == "Success") {
-                            Swal.fire({
-                                type: "success",
-                                text: "Delete Successfully !",
-                                confirmButtonText: 'OK'
-                            }).then((result) => {
-                                localStorage.route = "edit_profile.html";
-                                $("#content").html("");
-                                $("#content").load("edit_profile.html");
-                                location.reload();
-                            })
-                        } else {
-                            warning_response(response.data.message);
-                        }
-                    })
-                    .catch(function(data) {
-                        console.log(data);
-                        error_response();
-                    });
-            }
-        })
+    function close_add_voucher_modal() {
+        $('#voucherModal').modal('hide');
     }
 </script>

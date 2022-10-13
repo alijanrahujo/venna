@@ -145,8 +145,48 @@
 
 <script>
   $(document).ready(function(){
-    $('#register_form').hide();
+
+    var referral = getParameterByName("referral");
+        var voucher_code = getParameterByName("voucher");
+        if (voucher_code != "") {
+            //$("#voucher_code").val(voucher_code);
+        } else {
+            //$("#voucher_code").val("");
+        }
+        $("#username").val(referral);
+        //$("#referral_id").html(referral);
+        //$('#username').prop('readonly', true);
+        if ($("#username").val() != "") {
+            //show_sign_up_modal();
+            var check_username = new FormData();
+            check_username.set('api_key', api_key);
+            check_username.set('username', $("#username").val());
+            check_username.set('subdomain', 'venna');
+            axios.post(address + 'v1/Auth_Api/check_referral_username', check_username, apiHeader)
+                .then(function(response) {
+                    if (response.data.status == "Success") {
+                        console.log(response);
+                        $("#hidden_referral_username").val(response.data.data.username);
+                        $("#register_form").show();
+                        $("#first_step").hide();
+                    } else {
+                        warning_response(response.data.message);
+                    }
+                })
+                .catch(function(data) {});
+        }
+
+        $('#register_form').hide();
   })
+
+  function getParameterByName(name, url = window.location.href) {
+        name = name.replace(/[\[\]]/g, '\\$&');
+        var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, ' '));
+    }
 
   $('#referral').click(function(){
         var check_username = new FormData();
@@ -205,18 +245,18 @@
                     localStorage.user_id = response.data.data.user_id;
 
                     if (response.data.data.is_step1 == 0) {
-                        success_response(true, "register1.html");
-                    } else if (response.data.data.is_step2 == 0) {
-                        success_response(true, "register2.html");
-                    } else if (response.data.data.is_step3 == 0) {
-                        success_response(true, "register3.html");
-                    } else if (response.data.data.is_step4 == 0) {
-                        success_response(true, "register4.html");
-                    } else if (response.data.data.is_done == 0) {
-                        success_response(true, "register5.html");
-                    } else {
-                        success_response(true, "dashboard/index.php");
-                    }
+                            success_response("Success", true, "register1.html");
+                        } else if (response.data.data.is_step2 == 0) {
+                            success_response("Success", true, "register2.html");
+                        } else if (response.data.data.is_step3 == 0) {
+                            success_response("Success", true, "register3.html");
+                        } else if (response.data.data.is_step4 == 0) {
+                            success_response("Success", true, "register4.html");
+                        } else if (response.data.data.is_done == 0) {
+                            success_response("Success", true, "register5.html");
+                        } else {
+                            success_response("Success", true, "dashboard/index.php");
+                        }
                 } else {
                     warning_response(response.data.message);
                 }

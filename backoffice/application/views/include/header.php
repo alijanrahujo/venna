@@ -157,8 +157,8 @@
                         </li> -->
                         <?php
                             if($this->user_profile_info['user_type'] == "ADMIN"){
-                                $withdraw_info = $this->Api_Model->get_rows_info(TBL_WITHDRAW, "COUNT(*) as total_withdraw, id", array('active' => 1, 'status' => "PENDING"));
-                                $total_withdraw = isset($withdraw_info['id']) ? $withdraw_info['total_withdraw'] : 0;
+                                $withdraw_info = $this->Api_Model->get_rows_info(TBL_WITHDRAW, "COUNT(*) as total_withdraw", array('active' => 1, 'status' => "PENDING"));
+                                $total_withdraw = isset($withdraw_info['total_withdraw']) ? $withdraw_info['total_withdraw'] : 0;
                         ?>
                         <!-- <li class="dropdown nav-item mr-1"><a class="nav-link d-flex align-items-end" href="<?= site_url() . "Withdraw"; ?>"><i class="fa fa-money" style="font-size: 30px;"></i><div class="number bell-notification"><span><?php echo $total_withdraw; ?></span></div></a></li> -->
                         <?php

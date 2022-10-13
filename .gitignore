@@ -2,3 +2,5 @@ js/ip.js
 js/ip_address.js
 api/application/config/constants.php
 backoffice/application/config/constants.php
+backoffice/library/js/ip.js
+backoffice/application/views/include/header.php
