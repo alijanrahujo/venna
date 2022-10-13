@@ -288,20 +288,20 @@ class  Basic_Api extends Base_Controller {
                         if($stock_balance == $total_quantity){
                             $this->proceed_update_user_step1_post($user_id, $package_id);
                         }else{
-                            // if($stock_balance < $total_quantity){
-                            //     $data_update = array(
-                            //         'package_id' => 0,
-                            //         'is_step1' => 0,
-                            //         'is_voucher' => 0,
-                            //         'voucher_id' => 0
-                            //     );
-                            //     $this->Api_Model->update_data(TBL_USER, array('id' => $user_id, 'active' => 1), $data_update);
+                            if($stock_balance < $total_quantity){
+                                $data_update = array(
+                                    'package_id' => 0,
+                                    'is_step1' => 0,
+                                    'is_voucher' => 0,
+                                    'voucher_id' => 0
+                                );
+                                $this->Api_Model->update_data(TBL_USER, array('id' => $user_id, 'active' => 1), $data_update);
                                 
-                            //     $result = $this->error_response("Upline is Insufficient Stock ! Please Inform to restock !");
-                            //     $this->response($result, 200);
-                            // }else{
+                                $result = $this->error_response("Upline is Insufficient Stock ! Please Inform to restock !");
+                                $this->response($result, 200);
+                            }else{
                                 $this->proceed_update_user_step1_post($user_id, $package_id);
-                            // }
+                            }
                         }
                     }else{
                         if($point_balance == $grand_total){
