@@ -244,8 +244,7 @@ include("head.php");
 
 <script>
     $(document).ready(function() {
-        //get_member_info();
-        $("#register_invitation_link").val(share_url + "register.html?referral=" + localStorage.username);
+        get_member_info();
         $("#retail_invitation_link").val(share_url + "guest_retail_order.html?referral=" + localStorage.user_id);
         // $("#whatsapp_share").attr("href", "whatsapp://send?text=" + share_url + "register.html?referral=" + localStorage.username);
         //check_is_display_voucher();
@@ -275,6 +274,10 @@ include("head.php");
             })
             .then(function(response) {
                 if (response.data.status == "Success") {
+                    //console.log(response.data.data);
+                    localStorage.username = response.data.data.username;
+                    $("#register_invitation_link").val(share_url + "register.html?referral=" + localStorage.username);
+
                     if (response.data.data.register_qr != "" && response.data.data.register_qr != null && response.data.data.register_qr != "https://ainra.co/3fscp/img/register_poster/") {
                         $("#register_qr").attr("src", response.data.data.register_qr);
                         $("#register_qr_download").attr("href", response.data.data.register_qr);
