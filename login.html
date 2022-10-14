@@ -159,8 +159,7 @@
                         localStorage.oauth_token = response.data.data.oauth_client_token;
                         localStorage.access_token = response.data.data.access_token;
                         localStorage.user_id = response.data.data.user_id;
-                        localStorage.username = response.data.data.username;
-
+                        
                         if (response.data.data.is_step1 == 0) {
                             success_response("Success", true, "register1.html");
                         } else if (response.data.data.is_step2 == 0) {
