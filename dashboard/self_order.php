@@ -119,21 +119,100 @@ include("head.php");
       
       <h3>Self Order</h3>
       <div class="row my-4">
-        <div class="col-lg-12 col-md-12 mb-md-0 mb-4">
+        <div class="col-md-4 mb-md-0 mb-4">  
           <div class="card">
-            <div class="col-lg-12 col-md-12 mb-md-0 mb-4">  
-              <div class="card-header pb-0">
-                <div class="card-body">
-                  <div class="card p-3 mb-2 bg-dark text-white md-3">
-                  Hello
-                  </div>
-                </div>
-              </div>           
-             </div>
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>         
+        </div>
+
+        <div class="col-md-4 mb-md-0 mb-4">  
+          <div class="card">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>         
+        </div>
+
+        <div class="col-md-4 mb-md-0 mb-4">  
+          <div class="card">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>         
+        </div>
+      </div>
+      
+      <div class="row my-4">
+      <div class="col-lg-6 col-md-6 mb-md-0 mb-4">
+          <div class="card">
+            <div class="card-header pb-0">
+            <h5><center>My Information</center></h5>
+                
+            </div>
+            <div class="card-body px-0 pb-2">
+            <div class="flex p-2">
+            <table class="table">
+  <thead>
+    <tr>
+        <th>Level</th>
+        <th>Qty Order`</th>
+        <th>MM point</th>
+        <th>Test</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><img src="https://www.eymockup.com/wp-content/uploads/2019/05/Spa-Product-Packaging-Mockup.jpg" width="80px" height="60px"></td>
+      <td>Test</td>
+      <td>
+      <div class="input-group mb-3">
+      <button class="btn btn-success" type="submit">-</button>
+      <input type="text" class="form-control" placeholder="Search" style="height:41px;">
+  <button class="btn btn-success" type="submit">+</button>
+</div>
+      </td>
+      <td>Test</td>
+</tr>
+  </tbody>
+  </table>
+              </div>
             </div>
           </div>
         </div>
+        <div class="col-lg-6 col-md-6">
+        <div class="card">
+            <div class="card-header pb-0">
+            <h5><center>Adresss</center></h5>
+                
+            </div>
+            <div class="card-body px-0 pb-2">
+            <div class="flex p-2">
+            <div class="form-block">
+                <div id="address_list"></div>
+
+                <div class="d-grid gap-2">
+                    <button type="buttion" class="btn btn-success">Add Address</button>
+                </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
       </div>
+    </div>
         
       <?php
       include("foot.php");
