@@ -166,9 +166,9 @@ include("head.php");
   <thead>
     <tr>
         <th>Level</th>
-        <th>Qty Order`</th>
+        <th>Qty Order</th>
         <th>MM point</th>
-        <th>Test</th>
+        
 
     </tr>
   </thead>
@@ -179,11 +179,11 @@ include("head.php");
       <td>
       <div class="input-group mb-3">
       <button class="btn btn-success" type="submit">-</button>
-      <input type="text" class="form-control" placeholder="Search" style="height:41px;">
+      <input type="number" class="form-control" style="height:41px; border-radius: 0px!important; text-align: center;">
   <button class="btn btn-success" type="submit">+</button>
 </div>
       </td>
-      <td>Test</td>
+      
 </tr>
   </tbody>
   </table>
@@ -200,18 +200,72 @@ include("head.php");
             <div class="card-body px-0 pb-2">
             <div class="flex p-2">
             <div class="form-block">
-                <div id="address_list"></div>
+            
+                    <div class="form-group">
+                      <label>Shipping</label>
+                      <select type="text" name="shipping" class="form-control"  placholder="Select Shipping">
+                          <option>Select</option>
+                      </select>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label>Reciept Name</label>
+                      <input type="text" name="reciept_name" class="form-control col-md-4">
+                      </div>
+                      <div class="form-group">
+                      <label>Phone</label>
+                      <input type="text" name="phone" class="form-control col-md-4">
+                      </div>
+                      <div class="form-group">
+                      <label>Select Address <a href="#"> (Add new Address)</a></label>
+                      <select type="text" name="address" class="form-control"  placholder="Select Shipping">
+                          <option>Select</option>
+                      </select>
+                      <div class="form-group">
+                      <label>Remarks</label>
+                      <input type="textarea" name="remarks" class="form-control col-md-4">
+                      </div>
+                      </div>
+                
 
-                <div class="d-grid gap-2">
-                    <button type="buttion" class="btn btn-success">Add Address</button>
-                </div>
+                 
+              
+
+                
 
                 </div>
               </div>
             </div>
+</div>
           </div>
+          <div class="col-lg-12 col-md-12 mb-md-0 mb-4">
+          <div class="card">
+            <div class="card-header pb-0">
+            </div>
+            <div class="card-body px-0 pb-2">
+            <div class="flex p-2">
+                  <div>
+                  <h6>Summary</h6>
+                  <span>Total 0.00</span>
+                  </div>
+                  <div class="form-block">
+                    
+                    <div class="form-group">
+                      <label>Security Code</label>
+                      <input type="password" name="reciept_name" class="form-control col-md-4">
+                      </div>
+                      
+                      
+                  
 
-      </div>
+                  <input type="button" value="Submit" class="btn btn-pill text-white btn-block w-100 btn-primary">
+
+                 
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
     </div>
         
       <?php
