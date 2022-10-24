@@ -30,8 +30,8 @@ body, html {
   height: 100%;
 }
 
-#News {background-color: white;}
-#Contact {background-color: white;}
+#myordere {background-color: white;}
+# {background-color: white;}
 </style>
 <?php
 include("head.php");
@@ -160,10 +160,10 @@ include("head.php");
   <br>
 
 
-<button class="tablink" onclick="openPage('News', this, 'green')" id="defaultOpen">News</button>
-<button class="tablink" onclick="openPage('Contact', this, 'blue')">Contact</button>
+<button class="tablink" onclick="openPage('myorder', this, 'green')" id="defaultOpen">My Orders</button>
+<button class="tablink" onclick="openPage('retailorder', this, 'blue')">Retails Orders</button>
 
-<div id="News" class="tabcontent">
+<div id="myorder" class="tabcontent">
 <div class="table-responsive">
   <table class="table">
   <thead>
@@ -191,7 +191,7 @@ include("head.php");
 </div>
 </div>
 
-<div id="Contact" class="tabcontent">
+<div id="retailorder" class="tabcontent">
 <div class="table-responsive">
   <table class="table">
   <thead>
