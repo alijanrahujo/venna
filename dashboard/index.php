@@ -124,12 +124,12 @@ include("head.php");
             <div class="card-body p-3">
               <div class="row">
                 <div class="col-8">
-                  <div class="numbers">
+                  <div class="numbers"><a href="stock_record.php">
                     <center><p class="text-sm mb-0 text-capitalize font-weight-bold">Stocks</p></center>
                     <center><h5 class="font-weight-bolder mb-0">
                       <span class="stock"></span>
                       <span class="text-success text-sm font-weight-bolder"></span>
-                    </h5></center>
+                    </h5></center></a>
                   </div>
                 </div>
                 <div class="col-4 text-end">
